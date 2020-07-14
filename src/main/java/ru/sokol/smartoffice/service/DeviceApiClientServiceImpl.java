@@ -8,14 +8,16 @@ import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
-
+import ru.sokol.smartoffice.model.DeviceControlRequest;
+import ru.sokol.smartoffice.model.DeviceControlResponse;
 
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
-public class DeviceApiClientServiceImpl {
+public class DeviceApiClientServiceImpl implements DeviceApiClientService {
 
     @Value("device.api.base.url")
     String baseUrl;
@@ -39,6 +41,10 @@ public class DeviceApiClientServiceImpl {
 
     }
 
-//    public
+    @Override
+    public Mono<DeviceControlResponse> processRequest(DeviceControlRequest request) {
+       return webClient.post().uri("/process").body(Mono.just(request), DeviceControlRequest.class)
+                .retrieve().bodyToMono(DeviceControlResponse.class);
+    }
 
 }

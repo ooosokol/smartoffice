@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
 @Data
-public class deviceControlRequest {
+public class DeviceControlRequest {
     @JsonProperty("deviceIdentifier")
     DeviceEnum device;
 
