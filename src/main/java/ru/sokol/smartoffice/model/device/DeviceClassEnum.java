@@ -1,4 +1,4 @@
-package ru.sokol.smartoffice.model;
+package ru.sokol.smartoffice.model.device;
 
 public enum  DeviceClassEnum {
     LASER,

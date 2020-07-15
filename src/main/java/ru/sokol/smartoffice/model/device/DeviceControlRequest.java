@@ -1,4 +1,4 @@
-package ru.sokol.smartoffice.model;
+package ru.sokol.smartoffice.model.device;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

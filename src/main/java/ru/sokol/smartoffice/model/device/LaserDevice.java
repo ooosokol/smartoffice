@@ -1,4 +1,4 @@
-package ru.sokol.smartoffice.model;
+package ru.sokol.smartoffice.model.device;
 
 import lombok.EqualsAndHashCode;
 import lombok.Value;

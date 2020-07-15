@@ -3,10 +3,10 @@ package ru.sokol.smartoffice.service;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import ru.sokol.smartoffice.model.Device;
-import ru.sokol.smartoffice.model.DeviceControlRequest;
-import ru.sokol.smartoffice.model.DeviceControlResponse;
-import ru.sokol.smartoffice.model.DeviceEnum;
+import ru.sokol.smartoffice.model.device.Device;
+import ru.sokol.smartoffice.model.device.DeviceControlRequest;
+import ru.sokol.smartoffice.model.device.DeviceControlResponse;
+import ru.sokol.smartoffice.model.device.DeviceEnum;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,10 +27,13 @@ public class DevicesServiceImpl {
         return Arrays.stream(DeviceEnum.values()).filter(DeviceEnum::getListed).map(DeviceEnum::getDevice).collect(Collectors.toList());
     }
 
-    public void sendRequestAndNotify(){
+    public void sendRequestAndNotify(DeviceControlRequest request){
         Mono.just(new DeviceControlResponse())
-        /*deviceApiClientService.processRequest(new DeviceControlRequest())*/.subscribe((response)->{
-            template.convertAndSend("/topic/devices", response);
+        /*deviceApiClientService.processRequest(request)*/.subscribe((response)->{
+//            request.getDevice().getDevice()
+            Device device = request.getDevice().getDevice();
+//            device.setNewState();
+            template.convertAndSend("/topic/devices", device);
         });
     }
 

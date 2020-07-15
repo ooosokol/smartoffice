@@ -1,4 +1,4 @@
-package ru.sokol.smartoffice.model;
+package ru.sokol.smartoffice.model.device;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -17,17 +17,17 @@ public enum  DeviceEnum {
     LOGO_LETTER_5(LedDevice.class,true);
 
 
-    Device device;
+    AbstractDevice device;
     Boolean listed;
 
 
     @SneakyThrows
-    DeviceEnum(Class<? extends Device> deviceClass, Boolean listed) {
+    DeviceEnum(Class<? extends AbstractDevice> deviceClass, Boolean listed) {
         this.device = deviceClass.getConstructor(DeviceEnum.class).newInstance(this);
         this.listed = listed;
     }
 
-    public Device getDevice() {
+    public AbstractDevice getDevice() {
         return device;
     }
 
