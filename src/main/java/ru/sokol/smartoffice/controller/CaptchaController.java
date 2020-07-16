@@ -16,7 +16,7 @@ public class CaptchaController {
         this.captchaService = captchaService;
     }
 
-    @GetMapping("/captcha/reactive")
+    @GetMapping("/captcha")
     Publisher<ResponseEntity<?>> reactiveCaptchaDownload() {
         return captchaService.getNextCaptcha().map(fileContent -> ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(fileContent));
 
