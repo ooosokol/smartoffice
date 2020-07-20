@@ -11,14 +11,17 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
 public class CaptchaServiceImpl implements CaptchaService {
+    private final Duration BASE_CAPTCHA_LATENCY_DURATION = Duration.ofMillis(4369);
 
-    private final AtomicInteger elementNumber = new AtomicInteger(0);
+    private final AtomicLong elementNumber = new AtomicLong(0);
     private final List<byte[]> cachedCaptchaFile;
+    private final Random random = new Random();
 
     @SneakyThrows
     public CaptchaServiceImpl(ApplicationContext applicationContext) {
@@ -33,7 +36,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     @Override
     public Mono<byte[]> getNextCaptcha() {
-        return Mono.delay(Duration.ofSeconds(5)).map(x -> getNextFile());
+        return Mono.delay(BASE_CAPTCHA_LATENCY_DURATION.plusMillis(random.nextInt(1632))).map(x -> getNextFile());
 
     }
 
@@ -48,7 +51,8 @@ public class CaptchaServiceImpl implements CaptchaService {
     }
 
     private byte[] getNextFile() {
-        return cachedCaptchaFile.get(elementNumber.getAndIncrement() % cachedCaptchaFile.size());
+        return cachedCaptchaFile.get((int) (elementNumber.getAndIncrement() % cachedCaptchaFile.size()));
     }
+
 
 }
