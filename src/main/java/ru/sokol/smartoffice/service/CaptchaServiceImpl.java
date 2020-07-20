@@ -43,6 +43,11 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     }
 
+    @Override
+    public Long getCurrentAtomicValue() {
+        return elementNumber.get();
+    }
+
     @SneakyThrows
     private static InputStream getInputStreamSneakyThrow(InputStreamSource streamSource) {
         return streamSource.getInputStream();
@@ -54,7 +59,7 @@ public class CaptchaServiceImpl implements CaptchaService {
     }
 
     private byte[] getNextFile() {
-        return cachedCaptchaFile.get((int) (elementNumber.getAndIncrement() % cachedCaptchaFile.size()));
+        return cachedCaptchaFile.get(Math.floorMod(elementNumber.getAndIncrement(), cachedCaptchaFile.size()));
     }
 
 
