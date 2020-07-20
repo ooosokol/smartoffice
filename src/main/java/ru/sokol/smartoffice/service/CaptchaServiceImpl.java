@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 @Service
 public class CaptchaServiceImpl implements CaptchaService {
     private final Duration BASE_CAPTCHA_LATENCY_DURATION = Duration.ofMillis(4369);
+    @SuppressWarnings("FieldCanBeLocal")
+    private final int CAPTCHA_LATENCY_NEXT_INT_BOUND_MILLIS = 1632;
 
     private final AtomicLong elementNumber = new AtomicLong(0);
     private final List<byte[]> cachedCaptchaFile;
@@ -36,7 +38,8 @@ public class CaptchaServiceImpl implements CaptchaService {
 
     @Override
     public Mono<byte[]> getNextCaptcha() {
-        return Mono.delay(BASE_CAPTCHA_LATENCY_DURATION.plusMillis(random.nextInt(1632))).map(x -> getNextFile());
+        return Mono.delay(BASE_CAPTCHA_LATENCY_DURATION.plusMillis(random.nextInt(CAPTCHA_LATENCY_NEXT_INT_BOUND_MILLIS)))
+                .map(x -> getNextFile());
 
     }
 
