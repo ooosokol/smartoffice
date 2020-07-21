@@ -1,6 +1,7 @@
 package ru.sokol.smartoffice.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
@@ -9,11 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.sokol.smartoffice.model.clientModels.ClientDeviceRequest;
 import ru.sokol.smartoffice.model.device.Device;
-import ru.sokol.smartoffice.model.device.DeviceControlRequest;
-import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.service.DevicesServiceImpl;
 
-import javax.validation.Valid;
 import java.util.Collection;
 
 @Slf4j
@@ -41,7 +39,9 @@ public class DeviceController {
     }
 
     @MessageMapping("/devices")
-    public void processDeviceCommand(@Valid ClientDeviceRequest request) {
+    public String  processDeviceCommand(Message<ClientDeviceRequest> request) {
+        log.info("request: {}",request);
+        /*
         DeviceControlRequest deviceControlRequest = new DeviceControlRequest();
         switch (request.getIdentifier().getDevice().getDeviceClass()) {
             case LED:
@@ -50,13 +50,14 @@ public class DeviceController {
                 deviceControlRequest.setPower(request.getPower());
                 break;
             default:
-                return;
+                return "FAIL";
         }
-        deviceControlRequest.setDevice(request.getIdentifier());
+        *//*deviceControlRequest.setDevice(request.getIdentifier());
 
         devicesService.sendRequestAndNotify(deviceControlRequest);
 
-        this.template.convertAndSend("/topic/devices", DeviceEnum.SWITCH1.getDevice());
+        this.template.convertAndSend("/topic/devices", DeviceEnum.SWITCH1.getDevice());*//*
+        */return "something";
 
     }
 
