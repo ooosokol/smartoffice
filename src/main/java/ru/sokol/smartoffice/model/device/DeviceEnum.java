@@ -6,7 +6,7 @@ import lombok.SneakyThrows;
 
 public enum  DeviceEnum {
     SWITCH1(SwitchDevice.class,true, false),
-    SWITCH2(SwitchDevice.class, false, true),
+    SWITCH2(SwitchDevice.class, false, true),//Laser switch
     SWITCH3(SwitchDevice.class, true, true),
     LASER(LaserDevice.class, false, true),
     FAN(FanDevice.class, false, true),
