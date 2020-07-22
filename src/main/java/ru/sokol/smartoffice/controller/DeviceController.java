@@ -2,12 +2,7 @@ package ru.sokol.smartoffice.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import ru.sokol.smartoffice.model.device.Device;
 import ru.sokol.smartoffice.service.DevicesServiceImpl;
-
-import java.util.Collection;
 
 @Slf4j
 @Controller

@@ -2,35 +2,36 @@ package ru.sokol.smartoffice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.HandlerMapping;
-import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
-import org.springframework.web.reactive.socket.WebSocketHandler;
-import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean;
 
-import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableWebSocket
-public class WebSocketConfig {
+public class WebSocketConfig implements WebSocketConfigurer {
 
-    private final WebSocketHandler deviceWebSocketHandler;
+    private final TextWebSocketHandler webSocketHandler;
 
-    public WebSocketConfig(WebSocketHandler deviceWebSocketHandler) {
-        this.deviceWebSocketHandler = deviceWebSocketHandler;
+    public WebSocketConfig(TextWebSocketHandler webSocketHandler) {
+        this.webSocketHandler = webSocketHandler;
+    }
+
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(webSocketHandler, "/ws");
     }
 
     @Bean
-    public HandlerMapping handlerMapping() {
-        SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
-        mapping.setOrder(1);
-        mapping.setUrlMap(Collections.singletonMap("/echo", deviceWebSocketHandler)
-        );
-        return mapping;
-    }
-
-    @Bean
-    public WebSocketHandlerAdapter handlerAdapter() {
-        return new WebSocketHandlerAdapter();
+    public ServletServerContainerFactoryBean createWebSocketContainer() {
+        ServletServerContainerFactoryBean container = new ServletServerContainerFactoryBean();
+        container.setMaxTextMessageBufferSize(8192);
+        container.setMaxBinaryMessageBufferSize(8192);
+        container.setMaxSessionIdleTimeout(TimeUnit.MINUTES.toMillis(1));
+        container.setAsyncSendTimeout(TimeUnit.SECONDS.toMillis(30));
+        return container;
     }
 }
