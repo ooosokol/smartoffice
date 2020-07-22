@@ -1,6 +1,5 @@
 package ru.sokol.smartoffice.service;
 
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.sokol.smartoffice.model.device.Device;
@@ -16,11 +15,9 @@ import java.util.stream.Collectors;
 public class DevicesServiceImpl {
 
     private final DeviceApiClientService deviceApiClientService;
-    private final SimpMessagingTemplate template;
 
-    public DevicesServiceImpl(DeviceApiClientService deviceApiClientService, SimpMessagingTemplate template) {
+    public DevicesServiceImpl(DeviceApiClientService deviceApiClientService) {
         this.deviceApiClientService = deviceApiClientService;
-        this.template = template;
     }
 
     public List<Device> getListedDevices(){
@@ -33,7 +30,7 @@ public class DevicesServiceImpl {
 //            request.getDevice().getDevice()
             Device device = request.getDevice().getDevice();
 //            device.setNewState();
-            template.convertAndSend("/topic/devices", device);
+//            template.convertAndSend("/topic/devices", device);
         });
     }
 

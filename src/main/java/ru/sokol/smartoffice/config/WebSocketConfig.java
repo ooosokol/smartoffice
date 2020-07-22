@@ -1,25 +1,36 @@
 package ru.sokol.smartoffice.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.reactive.HandlerMapping;
+import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.reactive.socket.WebSocketHandler;
+import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+
+import java.util.Collections;
 
 @Configuration
-@EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+@EnableWebSocket
+public class WebSocketConfig {
 
-    @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").withSockJS()
-                .setHeartbeatTime(60_000)
-                .setDisconnectDelay(90_000);
+    private final WebSocketHandler deviceWebSocketHandler;
+
+    public WebSocketConfig(WebSocketHandler deviceWebSocketHandler) {
+        this.deviceWebSocketHandler = deviceWebSocketHandler;
     }
 
-    @Override
-    public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/app", "/topic");
-        registry.setApplicationDestinationPrefixes("/app", "/topic");
+    @Bean
+    public HandlerMapping handlerMapping() {
+        SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
+        mapping.setOrder(1);
+        mapping.setUrlMap(Collections.singletonMap("/echo", deviceWebSocketHandler)
+        );
+        return mapping;
+    }
+
+    @Bean
+    public WebSocketHandlerAdapter handlerAdapter() {
+        return new WebSocketHandlerAdapter();
     }
 }
