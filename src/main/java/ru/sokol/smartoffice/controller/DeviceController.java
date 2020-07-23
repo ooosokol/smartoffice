@@ -14,23 +14,23 @@ public class DeviceController {
         this.devicesService = devicesService;
     }
 
-  /*  @GetMapping("/devices")
-    @ResponseBody
-    public Collection<Device> getDevicesStatus() {
-        return devicesService.getListedDevices();
-    }
-*/
+    /*  @GetMapping("/devices")
+      @ResponseBody
+      public Collection<Device> getDevicesStatus() {
+          return devicesService.getListedDevices();
+      }
+  */
 /*
 
     @SubscribeMapping("/devices")
     public Collection<Device> chatInit() {
         return devicesService.getListedDevices();
     }
+*/
+/*
 
-    @MessageMapping("/devices")
-    @SendToUser
-    public String  processDeviceCommand(Message<ClientDeviceRequest> request) throws Exception {
-        log.info("request: {}",request);
+    public String processDeviceCommand(Message<ClientDeviceRequest> request) throws Exception {
+        log.info("request: {}", request);
 
 //        DeviceControlRequest deviceControlRequest = new DeviceControlRequest();
         switch (request.getPayload().getIdentifier().getDevice().getDeviceClass()) {
@@ -42,16 +42,16 @@ public class DeviceController {
             default:
                 return "FAIL";
         }
-        */
-/*deviceControlRequest.setDevice(request.getIdentifier());
+
+//        request.getPayload().getIdentifier().getDevice()
+
+        deviceControlRequest.setDevice(request.getIdentifier());
 
         devicesService.sendRequestAndNotify(deviceControlRequest);
 
-        this.template.convertAndSend("/topic/devices", DeviceEnum.SWITCH1.getDevice());*//*
-*/
-/*
-        *//*
-return "something";
+        this.template.convertAndSend("/topic/devices", DeviceEnum.SWITCH1.getDevice());
+
+        return "something";
 
     }
 */

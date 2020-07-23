@@ -1,17 +1,14 @@
 package ru.sokol.smartoffice.service;
 
-import org.springframework.boot.autoconfigure.rsocket.RSocketProperties;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.annotation.Bean;
-import org.springframework.messaging.rsocket.RSocketRequester;
-import org.springframework.messaging.rsocket.RSocketStrategies;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
-import java.net.URI;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class MegatronServiceImpl {
+    private AtomicLong counter = new AtomicLong();
+
+    private static final String secret = "04080F1017A2";
+
 
 }

@@ -1,16 +1,27 @@
 package ru.sokol.smartoffice.model.device;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-@Data
-public class AbstractDevice implements Device {
-    private final DeviceEnum device;
-    private final DeviceClassEnum deviceClass;
+import java.time.LocalDateTime;
 
-    public AbstractDevice(DeviceEnum device, DeviceClassEnum deviceClass) {
+@Data
+public abstract class AbstractDevice implements Device {
+    private final DeviceEnum device;
+    @JsonIgnore
+    private final Class<? extends AbstractDevice> deviceClass;
+    Boolean power = false;
+    @JsonIgnore
+    LocalDateTime lastChange = LocalDateTime.MIN;
+
+    public AbstractDevice(DeviceEnum device, Class<? extends AbstractDevice> deviceClass) {
         this.device = device;
         this.deviceClass = deviceClass;
 
     }
 
+    public AbstractDevice() {
+        device = null;
+        deviceClass = null;
+    }
 }

@@ -4,7 +4,11 @@ import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import ru.sokol.smartoffice.model.device.Device;
+import ru.sokol.smartoffice.model.device.DeviceEnum;
+import ru.sokol.smartoffice.model.device.FanDevice;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -43,43 +47,32 @@ public class FanServiceImpl {
 
     }
 
-    @Scheduled(fixedDelay = 5000)
-    public void processNewMonitoringValues() {
+    @Scheduled(fixedRate = 5000)
+    public synchronized void processNewMonitoringValues() {
         cpuLoad += random.nextInt(14) - 7;
         cpuTemp += random.nextInt(8) - 4;
         fanRpm += random.nextInt(400) - 200;
         long deltaCountFile = Math.abs(captchaService.getCurrentAtomicValue() - lastAtomicValue);
         if (deltaCountFile > 250) {
             cpuLoad += 5 + random.nextInt(5);
-            if (cpuLoad > MAX_CPU_LOAD) {
-                cpuLoad = MAX_CPU_LOAD;
-            }
             cpuTemp += 2 + random.nextInt(4);
-            if (cpuTemp > MAX_CPU_TEMP) {
-                cpuTemp = MAX_CPU_TEMP;
-            }
             fanRpm += 200 + random.nextInt(200);
-            if (fanRpm > MAX_FAN_RPM) {
-                fanRpm = MAX_FAN_RPM;
-            }
         } else if (deltaCountFile < 10) {
             cpuLoad -= random.nextInt(5);
-            if (cpuLoad < MIN_CPU_LOAD) {
-                cpuLoad = MIN_CPU_LOAD;
-            }
             cpuTemp -= random.nextInt(4);
-            if (cpuTemp < MIN_CPU_TEMP) {
-                cpuTemp = MIN_CPU_TEMP;
-            }
             fanRpm -= random.nextInt(200);
-            if (fanRpm < MIN_FAN_RPM) {
-                fanRpm = MIN_FAN_RPM;
-            }
         }
+        cpuLoad = Math.max(MIN_CPU_LOAD,Math.min(MAX_CPU_LOAD,cpuLoad));
+        cpuTemp = Math.max(MIN_CPU_TEMP,Math.min(MAX_CPU_TEMP,cpuTemp));
+        fanRpm = Math.max(MIN_FAN_RPM,Math.min(MAX_FAN_RPM,fanRpm));
         cpuLoadGauge.set(cpuLoad);
         cpuTempGauge.set(cpuTemp);
         cpuFanRpmGauge.set(fanRpm);
 
         lastAtomicValue = captchaService.getCurrentAtomicValue();
+        FanDevice fanDevice = (FanDevice) DeviceEnum.FAN.getDevice();
+        fanDevice.setSpeed((short)  ((Math.max(0, (fanRpm - 2 * MIN_FAN_RPM)) * 100) / (MAX_FAN_RPM - 2 * MIN_FAN_RPM)));
+        fanDevice.setLastChange(LocalDateTime.now());
+        log.info("change fan device request must be send: {}, fanRpm: {}", fanDevice, fanRpm);
     }
 }
