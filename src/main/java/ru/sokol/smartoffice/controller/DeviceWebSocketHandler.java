@@ -1,6 +1,5 @@
 package ru.sokol.smartoffice.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
@@ -8,11 +7,8 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import ru.sokol.smartoffice.model.clientModels.ClientDeviceRequest;
-import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.service.WebSocketServiceImpl;
 
-import javax.xml.validation.Validator;
 import java.io.IOException;
 
 @Component

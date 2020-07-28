@@ -18,6 +18,7 @@ import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 @Service
 @Slf4j
@@ -32,6 +33,8 @@ public class WebSocketServiceImpl {
     private final WebSocketMessage<?> INVALID_CREDENTIALS = new TextMessage("{\"message\":\"invalid credentials\"}");
     private final WebSocketMessage<?> DEVICE_NOT_READY = new TextMessage("{\"message\":\"device not ready\"}");
     private final WebSocketMessage<?> BAD_REQUEST = new TextMessage("{\"message\":\"bad request\"}");
+
+    Pattern COLOR_PATTERN = Pattern.compile("^[A-Fa-f0-9]{6}$");
 
     public WebSocketServiceImpl(DevicesServiceImpl devicesService, ObjectMapper objectMapper) {
         this.devicesService = devicesService;
@@ -58,7 +61,6 @@ public class WebSocketServiceImpl {
         if ("pong".equals(request.getAction())) {
             return;
         }
-        //todo color pattern validate
 //        validate request here
         if (request.getDevice() == null ||
                 DeviceEnum.LASER.equals(request.getDevice()) ||
@@ -70,17 +72,17 @@ public class WebSocketServiceImpl {
             sendMessage(session, INVALID_CREDENTIALS);
             return;
         }
-        if (!request.getDevice().getDevice().isDeviceReady()) {
-            sendMessage(session, DEVICE_NOT_READY);
-            return;
-        }
-        if (request.getPower() == null) {
+        if (request.getPower() == null ||(request.getColor()!=null && !COLOR_PATTERN.matcher(request.getColor()).matches())) {
             sendMessage(session, BAD_REQUEST);
             return;
         }
         AbstractDevice device = request.getDevice().getDevice();
         boolean success = false;
         synchronized (request.getDevice()) {
+            if (!request.getDevice().getDevice().isDeviceReady()) {
+                sendMessage(session, DEVICE_NOT_READY);
+                return;
+            }
             var deviceControlRequest = new DeviceControlRequest();
             deviceControlRequest.setDevice(request.getDevice());
             deviceControlRequest.setPower(request.getPower());

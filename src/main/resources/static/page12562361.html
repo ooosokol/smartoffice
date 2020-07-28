@@ -27,6 +27,7 @@
     <script src="js/hammer.min.js" charset="utf-8"></script>
     <script src="js/tilda-zoom-2.0.min.js" charset="utf-8"></script>
     <script src="js/tilda-animation-sbs-1.0.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
     <script type="text/javascript">window.dataLayer = window.dataLayer || [];</script>
     <script type="text/javascript">if ((/bot|google|yandex|baidu|bing|msn|duckduckbot|teoma|slurp|crawler|spider|robot|crawling|facebook/i.test(navigator.userAgent)) === false && typeof (sessionStorage) != 'undefined' && sessionStorage.getItem('visited') !== 'y') {
         var style = document.createElement('style');
@@ -4576,15 +4577,106 @@
         </div>
         <script>$(document).ready(function () {
             t396_init('211382832');
+            AppOnFinishLoad();
         });</script><!-- /T396 --></div>
-</div><!--/allrecords--><!-- Tilda copyright. Don't remove this line -->
-<div class="t-tildalabel " id="tildacopy" data-tilda-sign="2708073#12562361"><a href="https://tilda.cc/?upm=2708073"
-                                                                                class="t-tildalabel__link">
-    <div class="t-tildalabel__wrapper">
-        <div class="t-tildalabel__txtleft">Made on</div>
-        <div class="t-tildalabel__wrapimg"><img src="images/tildacopy.png" class="t-tildalabel__img"></div>
-        <div class="t-tildalabel__txtright">Tilda</div>
-    </div>
-</a></div>
+</div>
+<style>.tn-atom .t-input-error {
+    position: absolute;
+    color: red;
+    background-color: #fff;
+    padding: 8px 10px;
+    border-radius: 2px;
+    z-index: 1;
+    margin-top: 5px;
+    left: 0px;
+    box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.tn-atom .t-input-error:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-width: 6px;
+    top: -12px;
+    left: 15%;
+    border-bottom-color: #fff;
+}
+
+.tn-form__errorbox-close {
+    height: 14px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 14px;
+    cursor: pointer;
+}
+
+.tn-form__errorbox-close-line {
+    background: #fff none repeat scroll 0 0;
+    height: 1px;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
+.tn-form__errorbox-close-line-left {
+    transform: rotate(45deg);
+}
+
+.tn-form__errorbox-close-line-right {
+    transform: rotate(-45deg);
+}
+
+.tn-atom .t-form__errorbox-wrapper, .tn-form__errorbox-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+    min-width: 260px;
+    width: auto;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    text-align: left;
+    font-family: Arial, sans-serf;
+    background: #F95D51;
+    padding: 10px;
+}
+
+.tn-atom .js-error-control-box .t-radio__wrapper, .tn-atom .js-error-control-box .t-checkbox__control {
+    padding: 3px;
+    margin-top: -3px;
+}
+
+@media screen and (max-width: 480px) {
+    .tn-atom .t-form__errorbox-wrapper, .tn-form__errorbox-popup {
+        max-width: 280px;
+    }
+}
+
+#popup {
+    width: 200px;
+    height: 140px;
+    padding: 20px;
+    background-color: gray;
+    position: fixed;
+    display: none;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -70px;
+}</style>
+<div id="popup">
+    <div>Введите имя пользователя:</div>
+    <input id="login" type="text"/>
+    <div>Введите пароль пользователя:</div>
+    <input id="password" type="password"/>
+    <button onclick="saveLoginPassword()">Сохранить</button>
+</div>
 </body>
 </html>
