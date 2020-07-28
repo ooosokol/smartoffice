@@ -3,8 +3,8 @@ package ru.sokol.smartoffice.service;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.sokol.smartoffice.model.device.Device;
-import ru.sokol.smartoffice.model.device.DeviceControlRequest;
-import ru.sokol.smartoffice.model.device.DeviceControlResponse;
+import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
+import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlResponse;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
 
 import java.util.Arrays;

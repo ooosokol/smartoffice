@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
-import ru.sokol.smartoffice.model.device.DeviceControlRequest;
-import ru.sokol.smartoffice.model.device.DeviceControlResponse;
+import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
+import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlResponse;
 
 import java.util.concurrent.TimeUnit;
 

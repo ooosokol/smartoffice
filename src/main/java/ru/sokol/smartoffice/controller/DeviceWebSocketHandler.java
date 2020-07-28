@@ -22,7 +22,7 @@ public class DeviceWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(@NotNull WebSocketSession session, @NotNull TextMessage messageText) throws IOException {
-        session.sendMessage(messageText);
+
     }
 
     @Override
