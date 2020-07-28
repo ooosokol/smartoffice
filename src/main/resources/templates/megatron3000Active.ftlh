@@ -3428,24 +3428,6 @@
             <div class="t-tildalabel__wrapimg"><img src="images/tildacopy.png" class="t-tildalabel__img"></div>
             <div class="t-tildalabel__txtright">Tilda</div>
         </div>
-    </a></div><!-- Stat -->
-<script type="text/javascript">if (!window.mainTracker) {
-        window.mainTracker = 'tilda';
-    }
-    (function (d, w, k, o, g) {
-        var n = d.getElementsByTagName(o)[0], s = d.createElement(o), f = function () {
-            n.parentNode.insertBefore(s, n);
-        };
-        s.type = "text/javascript";
-        s.async = true;
-        s.key = k;
-        s.id = "tildastatscript";
-        s.src = g;
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, '098f24b318d9d52e76e06eba1cb092f0', 'script', 'https://stat.tildacdn.com/js/tildastat-0.2.min.js');</script>
+    </a></div>
 </body>
 </html>
