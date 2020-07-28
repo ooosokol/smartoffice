@@ -1,5 +1,6 @@
 package ru.sokol.smartoffice.model.device;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 
@@ -7,9 +8,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
-@Value
+@Data
 public class LedDevice extends AbstractDevice implements Device {
-    String color = "000000";
+    String color = "DEADBE";
     private static final Duration NOT_READY_TIME = Duration.ofSeconds(5);
 
     public LedDevice(DeviceEnum device) {

@@ -27,9 +27,9 @@ public class DeviceApiClientServiceImpl implements DeviceApiClientService {
     public DeviceApiClientServiceImpl() {
         HttpClient httpClient = HttpClient.create()
                 .tcpConfiguration(tcpClient -> {
-                    tcpClient = tcpClient.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 30000);
+                    tcpClient = tcpClient.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000);
                     tcpClient = tcpClient.doOnConnected(conn -> conn
-                            .addHandlerLast(new ReadTimeoutHandler(30000, TimeUnit.MILLISECONDS)));
+                            .addHandlerLast(new ReadTimeoutHandler(5000, TimeUnit.MILLISECONDS)));
                     return tcpClient;
                 });
         ClientHttpConnector connector = new ReactorClientHttpConnector(httpClient);

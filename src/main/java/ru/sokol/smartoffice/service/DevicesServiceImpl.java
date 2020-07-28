@@ -24,14 +24,16 @@ public class DevicesServiceImpl {
         return Arrays.stream(DeviceEnum.values()).filter(DeviceEnum::getListed).map(DeviceEnum::getDevice).collect(Collectors.toList());
     }
 
-    public void sendRequestAndNotify(DeviceControlRequest request){
+    public boolean sendRequest(DeviceControlRequest request){
         Mono.just(new DeviceControlResponse())
         /*deviceApiClientService.processRequest(request)*/.subscribe((response)->{
 //            request.getDevice().getDevice()
-            Device device = request.getDevice().getDevice();
+//            Device device = request.getDevice().getDevice();
 //            device.setNewState();
 //            template.convertAndSend("/topic/devices", device);
         });
+        //TODO check 200 status code
+        return true;
     }
 
 

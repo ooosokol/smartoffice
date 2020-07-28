@@ -7,12 +7,14 @@ import javax.validation.constraints.Pattern;
 
 @Value
 public class ClientDeviceRequest {
-    DeviceEnum identifier;
+    DeviceEnum device;
     Boolean power;
     @Pattern(regexp = "^[A-Fa-f0-9]{6}$")
     String color;
 
     String login;
     String password;
+
+    String action;
 
 }

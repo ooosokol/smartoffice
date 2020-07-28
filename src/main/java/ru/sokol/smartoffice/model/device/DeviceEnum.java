@@ -37,6 +37,10 @@ public enum  DeviceEnum {
         return listed;
     }
 
+    public Boolean getAuthorized() {
+        return authorized;
+    }
+
     @JsonValue
     public String getIdentifier(){
         return this.name();

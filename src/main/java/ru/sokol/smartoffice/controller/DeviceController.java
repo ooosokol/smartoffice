@@ -47,7 +47,7 @@ public class DeviceController {
 
         deviceControlRequest.setDevice(request.getIdentifier());
 
-        devicesService.sendRequestAndNotify(deviceControlRequest);
+        devicesService.sendRequest(deviceControlRequest);
 
         this.template.convertAndSend("/topic/devices", DeviceEnum.SWITCH1.getDevice());
 

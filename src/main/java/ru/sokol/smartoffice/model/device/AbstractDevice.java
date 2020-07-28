@@ -24,4 +24,8 @@ public abstract class AbstractDevice implements Device {
         device = null;
         deviceClass = null;
     }
+
+    public void changeDevice(){
+        lastChange = LocalDateTime.now();
+    }
 }
