@@ -73,6 +73,6 @@ public class FanServiceImpl {
         FanDevice fanDevice = (FanDevice) DeviceEnum.FAN.getDevice();
         fanDevice.setSpeed((short)  ((Math.max(0, (fanRpm - 2 * MIN_FAN_RPM)) * 100) / (MAX_FAN_RPM - 2 * MIN_FAN_RPM)));
         fanDevice.setLastChange(LocalDateTime.now());
-        log.info("change fan device request must be send: {}, fanRpm: {}", fanDevice, fanRpm);
+//        log.info("change fan device request must be send: {}, fanRpm: {}", fanDevice, fanRpm);
     }
 }
