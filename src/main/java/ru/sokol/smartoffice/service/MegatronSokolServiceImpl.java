@@ -2,6 +2,7 @@ package ru.sokol.smartoffice.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
+import ru.sokol.smartoffice.model.device.DeviceEnum;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -11,6 +12,8 @@ public class MegatronSokolServiceImpl  {
     private final AtomicLong counter;
 
     private final DevicesServiceImpl devicesService;
+
+    private final DeviceEnum megatronLaserSwitch = DeviceEnum.SWITCH2;
 
 
     public MegatronSokolServiceImpl(DevicesServiceImpl devicesService) {
@@ -25,6 +28,10 @@ public class MegatronSokolServiceImpl  {
 
     private String getMegatronToken() {
         return DigestUtils.md5Hex(DigestUtils.md5Hex(counter.get() + secret));
+    }
+
+    public boolean getMegatronPowerState(){
+        return megatronLaserSwitch.getDevice().getPower();
     }
 
 /*

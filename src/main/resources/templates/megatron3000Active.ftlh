@@ -2749,8 +2749,9 @@
                                          style="color:#000;font-weight:400;font-family:jopsima;font-size:16px;padding-bottom:5px;">
                                         Токен
                                     </div>
+                                    <#--token form MegatronSokolService-->
                                     <div class="t-input-block"><input type="text" name="token"
-                                                                      class="t-input js-tilda-rule " value=""
+                                                                      class="t-input js-tilda-rule " value="${testToken}"
                                                                       placeholder="Токен" data-tilda-rule="name"
                                                                       style="color:#000; border:1px solid #000; background-color:#fff; font-size:16px;font-weight:400;height:50px;">
                                         <div class="t-input-error"></div>
