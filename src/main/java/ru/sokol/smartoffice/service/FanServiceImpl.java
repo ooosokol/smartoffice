@@ -4,9 +4,9 @@ import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import ru.sokol.smartoffice.model.device.Device;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.model.device.FanDevice;
+import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
 
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -30,21 +30,20 @@ public class FanServiceImpl {
     private Integer fanRpm = MIN_FAN_RPM;
     private long lastAtomicValue = 0L;
 
-    private AtomicInteger cpuLoadGauge;
-    private AtomicInteger cpuTempGauge;
-    private AtomicInteger cpuFanRpmGauge;
+    private final AtomicInteger cpuLoadGauge;
+    private final AtomicInteger cpuTempGauge;
+    private final AtomicInteger cpuFanRpmGauge;
 
     private final CaptchaService captchaService;
-    private final MeterRegistry meterRegistry;
+    private final DevicesServiceImpl devicesService;
 
 
-    public FanServiceImpl(CaptchaService captchaService, MeterRegistry meterRegistry) {
+    public FanServiceImpl(CaptchaService captchaService, MeterRegistry meterRegistry, DevicesServiceImpl devicesService) {
         this.captchaService = captchaService;
-        this.meterRegistry = meterRegistry;
         cpuLoadGauge = meterRegistry.gauge("cpu.load", new AtomicInteger(MIN_CPU_LOAD));
         cpuTempGauge = meterRegistry.gauge("cpu.temp", new AtomicInteger(MIN_CPU_TEMP));
         cpuFanRpmGauge = meterRegistry.gauge("cpu.fan", new AtomicInteger(MIN_FAN_RPM));
-
+        this.devicesService = devicesService;
     }
 
     @Scheduled(fixedRate = 5000)
@@ -73,6 +72,9 @@ public class FanServiceImpl {
         FanDevice fanDevice = (FanDevice) DeviceEnum.FAN.getDevice();
         fanDevice.setSpeed((short)  ((Math.max(0, (fanRpm - 2 * MIN_FAN_RPM)) * 100) / (MAX_FAN_RPM - 2 * MIN_FAN_RPM)));
         fanDevice.setLastChange(LocalDateTime.now());
-//        log.info("change fan device request must be send: {}, fanRpm: {}", fanDevice, fanRpm);
+        DeviceControlRequest fanRequest = new DeviceControlRequest();
+        fanRequest.setPower(fanDevice.getSpeed() > 30);
+        fanRequest.setSpeed(fanDevice.getSpeed());
+        devicesService.sendRequest(fanRequest);
     }
 }
