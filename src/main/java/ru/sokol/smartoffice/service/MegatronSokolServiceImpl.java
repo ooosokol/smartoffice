@@ -3,7 +3,11 @@ package ru.sokol.smartoffice.service;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
+import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
+import ru.sokol.smartoffice.service.exception.MegatronException;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -34,28 +38,36 @@ public class MegatronSokolServiceImpl  {
         return megatronLaserSwitch.getDevice().getPower();
     }
 
-/*
+
 
     public void startMegatron(String megatronToken) throws MegatronException {
         if (getMegatronToken().equals(megatronToken)) {
-            LaserDeviceHelper.getInstance().run(LaserDeviceRequest.builder()
-                    .setPower(LaserDeviceRequest.MAX_POWER)
-                    .setDuration(LaserDeviceRequest.MAX_DURATION)
-                    .build()
-            );
+            DeviceControlRequest request = new DeviceControlRequest();
+            request.setDevice(DeviceEnum.LASER);
+            request.setPower(true);
+            request.setLevel((short)100);
+            request.setPeriod((int) Duration.ofMinutes(20).toSeconds());
+
+            devicesService.sendRequest(request);
+            DeviceEnum.LASER.getDevice().setLastChange(LocalDateTime.now());
         } else if (getMegatronTestToken().equals(megatronToken)) {
-            LaserDeviceHelper.getInstance().run(LaserDeviceRequest.builder()
-                    .setPower(LaserDeviceRequest.MIN_POWER)
-                    .setDuration(Duration.ofSeconds(10))
-                    .build()
-            );
+            if(!DeviceEnum.LASER.getDevice().isDeviceReady()){
+                throw new MegatronException("device not ready");
+            }
+            DeviceControlRequest request = new DeviceControlRequest();
+            request.setDevice(DeviceEnum.LASER);
+            request.setPower(true);
+            request.setLevel((short)10);
+            request.setPeriod((int) Duration.ofSeconds(5).toSeconds());
+
+            devicesService.sendRequest(request);
+
         } else {
-            throw new MegatronTockenInvalidException(megatronToken);
+            throw new MegatronException("Invalid token");
         }
         counter.getAndIncrement();
-        PushNotificationService.getInstance().sendNewToken(getMegatronToken());
     }
-*/
+
 
 
 }

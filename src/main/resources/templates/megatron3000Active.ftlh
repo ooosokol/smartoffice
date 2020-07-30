@@ -2738,7 +2738,7 @@
                      data-field-buttonfontweight-value="600">
                     <div class='tn_form'>
                         <form id="form211641341" name="form211641341" role="form"
-                              action="/megatron/procces" method="POST" data-formactiontype="2"
+                              action="/megatron/process" method="POST" data-formactiontype="2"
                               data-inputbox=".t-input-group"
                               class="t-form_inputs-total_1  tn-form_horiz js-send-form-error">
                             <div class="t-form__inputsbox">
@@ -2749,7 +2749,7 @@
                                          style="color:#000;font-weight:400;font-family:jopsima;font-size:16px;padding-bottom:5px;">
                                         Токен
                                     </div>
-                                    <#--token form MegatronSokolService-->
+                                    <!--token form MegatronSokolService-->
                                     <div class="t-input-block"><input type="text" name="token"
                                                                       class="t-input js-tilda-rule " value="${testToken}"
                                                                       placeholder="Токен" data-tilda-rule="name"

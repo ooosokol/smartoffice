@@ -20,6 +20,6 @@ public class LaserDevice extends AbstractDevice implements Device {
 
     @Override
     public boolean isDeviceReady() {
-        return false;
+        return this.lastChange.plus(NOT_READY_TIME).isBefore(LocalDateTime.now());
     }
 }
