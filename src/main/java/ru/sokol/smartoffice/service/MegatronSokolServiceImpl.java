@@ -1,6 +1,7 @@
 package ru.sokol.smartoffice.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
@@ -41,12 +42,12 @@ public class MegatronSokolServiceImpl  {
 
 
     public void startMegatron(String megatronToken) throws MegatronException {
-        if (getMegatronToken().equals(megatronToken)) {
+        if (getMegatronTestToken().equals(megatronToken)) {
             DeviceControlRequest request = new DeviceControlRequest();
             request.setDevice(DeviceEnum.LASER);
             request.setPower(true);
-            request.setLevel((short)100);
-            request.setPeriod((int) Duration.ofMinutes(20).toSeconds());
+            request.setLevel((short)255);
+            request.setPeriod((int) Duration.ofMinutes(1).toSeconds());
 
             devicesService.sendRequest(request);
             DeviceEnum.LASER.getDevice().setLastChange(LocalDateTime.now());
@@ -66,6 +67,11 @@ public class MegatronSokolServiceImpl  {
             throw new MegatronException("Invalid token");
         }
         counter.getAndIncrement();
+    }
+
+    @Scheduled(fixedRate = 5000)
+    public void counterIncrement(){
+        counter.incrementAndGet();
     }
 
 
