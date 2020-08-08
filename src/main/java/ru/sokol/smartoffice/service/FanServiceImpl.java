@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.model.device.FanDevice;
 import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
+import ru.sokol.smartoffice.model.deviceControlApiModel.HardwareDeviceEnum;
 
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -69,12 +70,30 @@ public class FanServiceImpl {
         cpuFanRpmGauge.set(fanRpm);
 
         lastAtomicValue = captchaService.getCurrentAtomicValue();
-        FanDevice fanDevice = (FanDevice) DeviceEnum.FAN.getDevice();
-        fanDevice.setSpeed((short)  ((Math.max(0, (fanRpm - 2 * MIN_FAN_RPM)) * 100) / (MAX_FAN_RPM - 2 * MIN_FAN_RPM)));
+        FanDevice fanDevice = (FanDevice) DeviceEnum.FAN1.getDevice();
+        fanDevice.setLevel((short)  ((Math.max(0, (fanRpm - 2 * MIN_FAN_RPM)) * 255) / (MAX_FAN_RPM - 2 * MIN_FAN_RPM)));
         fanDevice.setLastChange(LocalDateTime.now());
         DeviceControlRequest fanRequest = new DeviceControlRequest();
-        fanRequest.setPower(fanDevice.getSpeed() > 30);
-        fanRequest.setSpeed(fanDevice.getSpeed());
+        fanRequest.setDevice(HardwareDeviceEnum.ssr3);
+        fanRequest.setPower(fanDevice.getLevel() > 30);
+        fanRequest.setLevel((short)fanDevice.getLevel() > 30 ? fanDevice.getLevel():0);
+        devicesService.sendRequest(fanRequest);
+
+        fanRequest = new DeviceControlRequest();
+        fanRequest.setDevice(HardwareDeviceEnum.sw4);
+        fanRequest.setPower(fanDevice.getLevel() > 30);
+        devicesService.sendRequest(fanRequest);
+
+        fanRequest = new DeviceControlRequest();
+        fanRequest.setDevice(HardwareDeviceEnum.ssr2);
+        fanRequest.setPower(fanDevice.getLevel() > 180);
+        fanRequest.setLevel((short) fanDevice.getLevel() > 180 ? fanDevice.getLevel():0);
+        devicesService.sendRequest(fanRequest);
+
+
+        fanRequest = new DeviceControlRequest();
+        fanRequest.setDevice(HardwareDeviceEnum.sw2);
+        fanRequest.setPower(fanDevice.getLevel() > 100);
         devicesService.sendRequest(fanRequest);
     }
 }

@@ -7,7 +7,7 @@ import lombok.Value;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class FanDevice extends AbstractDevice implements Device {
-    Short speed = 0;
+    Short level = 0;
 
     public FanDevice(DeviceEnum device) {
         super(device, FanDevice.class);

@@ -2,22 +2,18 @@ package ru.sokol.smartoffice.model.deviceControlApiModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import ru.sokol.smartoffice.model.device.DeviceEnum;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+import java.io.Serializable;
 
 @Data
-public class DeviceControlRequest {
+public class DeviceControlRequest implements Serializable {
     @JsonProperty("deviceIdentifier")
-    DeviceEnum device;
+    HardwareDeviceEnum device;
 
     Boolean power;
-
-    @Positive
-    @Max(value = 100)
-    Short speed;
 
     @Pattern(regexp = "^[A-Fa-f0-9]{6}$")
     String color;
@@ -26,8 +22,15 @@ public class DeviceControlRequest {
     Integer period;
 
     @Positive
-    @Max(value = 100)
+    @Max(value = 255)
     Short level;
+
+    @Positive
+    Short end;
+
+    Short start;
+
+
 
 
 

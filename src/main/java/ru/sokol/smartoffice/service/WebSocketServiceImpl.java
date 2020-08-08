@@ -15,6 +15,7 @@ import ru.sokol.smartoffice.model.device.Device;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.model.device.LedDevice;
 import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
+import ru.sokol.smartoffice.model.deviceControlApiModel.HardwareDeviceEnum;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -64,7 +65,8 @@ public class WebSocketServiceImpl {
 //        validate request here
         if (request.getDevice() == null ||
                 DeviceEnum.LASER.equals(request.getDevice()) ||
-                DeviceEnum.FAN.equals(request.getDevice())) {
+                DeviceEnum.FAN1.equals(request.getDevice()) ||
+                DeviceEnum.FAN2.equals(request.getDevice())) {
             sendMessage(session, UNKNOWN_DEVICE);
             return;
         }
@@ -84,12 +86,18 @@ public class WebSocketServiceImpl {
                 return;
             }
             var deviceControlRequest = new DeviceControlRequest();
-            deviceControlRequest.setDevice(request.getDevice());
+            deviceControlRequest.setDevice(request.getDevice().getHardwareDevice());
+
+
             deviceControlRequest.setPower(request.getPower());
             if (LedDevice.class.equals(request.getDevice().getDevice().getDeviceClass())) {
                 deviceControlRequest.setColor(request.getColor() != null ? request.getColor() :
                         ((LedDevice) device).getColor());
+                deviceControlRequest.setStart(request.getDevice().getStart());
+                deviceControlRequest.setEnd(request.getDevice().getEnd());
+                deviceControlRequest.setLevel(request.getDevice().getLevel());
             }
+
             if (devicesService.sendRequest(deviceControlRequest)) {
                 success = true;
                 device.changeDevice();
