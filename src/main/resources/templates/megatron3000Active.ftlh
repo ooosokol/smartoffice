@@ -2738,7 +2738,7 @@
                      data-field-buttonfontweight-value="600">
                     <div class='tn_form'>
                         <form id="form211641341" name="form211641341" role="form"
-                              action="/megatron/process" method="POST" data-formactiontype="2"
+                              action="/megatronProcess" method="POST" data-formactiontype="2"
                               data-inputbox=".t-input-group"
                               class="t-form_inputs-total_1  tn-form_horiz js-send-form-error">
                             <div class="t-form__inputsbox">

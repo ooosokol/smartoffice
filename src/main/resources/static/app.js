@@ -6,7 +6,7 @@ let password;
 
 function connect() {
     // socket = new WebSocket((location.protocol === 'https:' ? 'wss:':'ws:') + '//ws.' + window.location.host + '/ws');
-    socket = new WebSocket((location.protocol === 'https:' ? 'wss:':'ws:') + '//' + window.location.host + '/ws');
+    socket = new WebSocket((location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + '/ws');
     socket.onopen = function () {
         console.log("clientWebSocket.onopen", socket);
         console.log("clientWebSocket.readyState", "websocketstatus");
@@ -24,7 +24,7 @@ function connect() {
                 socket.send(JSON.stringify({action: "pong"}));
                 return;
             }
-            if(messageData.message){
+            if (messageData.message) {
                 let $popupError = $('#tilda-popup-for-error');
                 if ($popupError.length === 0) {
                     $('body').append('<div id="tilda-popup-for-error" class="js-form-popup-errorbox tn-form__errorbox-popup" style="display: none;"> <div class="t-form__errorbox-text t-text t-text_xs"> error </div> <div class="tn-form__errorbox-close js-errorbox-close"> <div class="tn-form__errorbox-close-line tn-form__errorbox-close-line-left"></div> <div class="tn-form__errorbox-close-line tn-form__errorbox-close-line-right"></div> </div> </div>');
@@ -38,15 +38,15 @@ function connect() {
                 $popupError.find('.t-form__errorbox-text').html('<p class="t-form__errorbox-item">' + messageData.message + '</p>');
                 $popupError.css('display', 'block').fadeIn();
                 $popupError.find('.t-form__errorbox-item').fadeIn()
-                if(messageData.message === "invalid credentials"){
+                if (messageData.message === "invalid credentials") {
                     login = undefined;
                     password = undefined;
                 }
                 return;
             }
-            if(Array.isArray(messageData)) {
+            if (Array.isArray(messageData)) {
                 messageData.forEach(setDeviceStatus)
-            }else {
+            } else {
                 setDeviceStatus(messageData)
             }
         }
@@ -56,57 +56,59 @@ function connect() {
 
 }
 
-function setDeviceStatus(controlPackage){
+function setDeviceStatus(controlPackage) {
     let controlElement = undefined;
-    for(let controlElementVar in CONTROL_ELEMENTS){
-        if(CONTROL_ELEMENTS[controlElementVar].identifier === controlPackage.device){
+    for (let controlElementVar in CONTROL_ELEMENTS) {
+        if (CONTROL_ELEMENTS[controlElementVar].identifier === controlPackage.device) {
             controlElement = CONTROL_ELEMENTS[controlElementVar];
             break;
         }
     }
-    if(!controlElement){
-        return ;
+    if (controlElement === undefined) {
+        return;
     }
-    if(controlPackage.color){
-        if("colorInput" in controlElement){
+    if (controlPackage.color) {
+        if ("colorInput" in controlElement) {
             controlElement.colorInput.val('#' + controlPackage.color);
         }
     }
-    if(controlPackage.power){
-        if("label" in controlElement ){
+    if (controlPackage.power) {
+        if ("label" in controlElement) {
             controlElement.label.text("on");
         }
-        if("indicator" in controlElement){
+        if ("indicator" in controlElement) {
             controlElement.indicator.css("background-color", COLOR_DICT.on);
         }
-    }else {
-        if("label" in controlElement ){
+    } else {
+        if ("label" in controlElement) {
             controlElement.label.text("off");
         }
-        if("indicator" in controlElement){
+        if ("indicator" in controlElement) {
             controlElement.indicator.css("background-color", COLOR_DICT.off);
         }
-        if("colorInput" in controlElement){
+        if ("colorInput" in controlElement) {
             controlElement.colorInput.val('#000000');
         }
     }
-    controlElement.button.removeClass("disabled-device-button");
+    controlElement.button.addClass("disabled-device-button");
+    setTimeout(() => controlElement.button.removeClass("disabled-device-button"), 5000);
 }
 
 function showLoginPasswordPopup() {
     document.getElementById("popup").style.display = "block";
 }
 
-function saveLoginPassword(){
+function saveLoginPassword() {
     login = $("#login").val()
     password = $("#password").val()
     document.getElementById("popup").style.display = "none";
 }
+
 const COLOR_DICT = {on: "#5afa32", off: "#fe0002", inactive: "#7a7a7b"}
 
 
-
 let CONTROL_ELEMENTS;
+
 function AppOnFinishLoad() {
 
     CONTROL_ELEMENTS = {
@@ -162,47 +164,87 @@ function AppOnFinishLoad() {
 
     }
 
-    CONTROL_ELEMENTS.SWITCH1.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.SWITCH1.identifier, power: CONTROL_ELEMENTS.SWITCH1.label.text()==="off"}));
+    CONTROL_ELEMENTS.SWITCH1.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.SWITCH1.identifier,
+            power: CONTROL_ELEMENTS.SWITCH1.label.text() === "off"
+        }));
     })
-    CONTROL_ELEMENTS.SWITCH4.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.SWITCH4.identifier, power: CONTROL_ELEMENTS.SWITCH4.label.text()==="off"}));
+    CONTROL_ELEMENTS.SWITCH4.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.SWITCH4.identifier,
+            power: CONTROL_ELEMENTS.SWITCH4.label.text() === "off"
+        }));
     })
-    CONTROL_ELEMENTS.SWITCH5.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.SWITCH5.identifier, power: CONTROL_ELEMENTS.SWITCH5.label.text()==="off"}));
+    CONTROL_ELEMENTS.SWITCH5.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.SWITCH5.identifier,
+            power: CONTROL_ELEMENTS.SWITCH5.label.text() === "off"
+        }));
     })
 
-    CONTROL_ELEMENTS.SWITCH3.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        if(login && password){
-            socket.send(JSON.stringify({device:CONTROL_ELEMENTS.SWITCH3.identifier, power: CONTROL_ELEMENTS.SWITCH3.label.text()==="off", login: login, password: password}));
-        }else{
+    CONTROL_ELEMENTS.SWITCH3.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        if (login && password) {
+            socket.send(JSON.stringify({
+                device: CONTROL_ELEMENTS.SWITCH3.identifier,
+                power: CONTROL_ELEMENTS.SWITCH3.label.text() === "off",
+                login: login,
+                password: password
+            }));
+        } else {
             showLoginPasswordPopup();
         }
     })
 
-    CONTROL_ELEMENTS.SWITCH4.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.SWITCH4.identifier, power: CONTROL_ELEMENTS.SWITCH1.label.text()==="off"}));
+    CONTROL_ELEMENTS.SWITCH4.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.SWITCH4.identifier,
+            power: CONTROL_ELEMENTS.SWITCH1.label.text() === "off"
+        }));
     })
 
-    CONTROL_ELEMENTS.SWITCH5.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.SWITCH5.identifier, power: CONTROL_ELEMENTS.SWITCH1.label.text()==="off"}));
+    CONTROL_ELEMENTS.SWITCH5.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.SWITCH5.identifier,
+            power: CONTROL_ELEMENTS.SWITCH1.label.text() === "off"
+        }));
     })
 
 
-    CONTROL_ELEMENTS.LOGO_LETTER_1.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.LOGO_LETTER_1.identifier, power: true, color: CONTROL_ELEMENTS.LOGO_LETTER_1.colorInput.val().substr(1)}));
+    CONTROL_ELEMENTS.LOGO_LETTER_1.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.LOGO_LETTER_1.identifier,
+            power: true,
+            color: CONTROL_ELEMENTS.LOGO_LETTER_1.colorInput.val().substr(1)
+        }));
     })
-    CONTROL_ELEMENTS.LOGO_LETTER_2.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.LOGO_LETTER_2.identifier, power: true, color: CONTROL_ELEMENTS.LOGO_LETTER_2.colorInput.val().substr(1)}));
+    CONTROL_ELEMENTS.LOGO_LETTER_2.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.LOGO_LETTER_2.identifier,
+            power: true,
+            color: CONTROL_ELEMENTS.LOGO_LETTER_2.colorInput.val().substr(1)
+        }));
     })
-    CONTROL_ELEMENTS.LOGO_LETTER_3.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.LOGO_LETTER_3.identifier, power: true, color: CONTROL_ELEMENTS.LOGO_LETTER_3.colorInput.val().substr(1)}));
+    CONTROL_ELEMENTS.LOGO_LETTER_3.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.LOGO_LETTER_3.identifier,
+            power: true,
+            color: CONTROL_ELEMENTS.LOGO_LETTER_3.colorInput.val().substr(1)
+        }));
     })
-    CONTROL_ELEMENTS.LOGO_LETTER_4.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.LOGO_LETTER_4.identifier, power: true, color: CONTROL_ELEMENTS.LOGO_LETTER_4.colorInput.val().substr(1)}));
+    CONTROL_ELEMENTS.LOGO_LETTER_4.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.LOGO_LETTER_4.identifier,
+            power: true,
+            color: CONTROL_ELEMENTS.LOGO_LETTER_4.colorInput.val().substr(1)
+        }));
     })
-    CONTROL_ELEMENTS.LOGO_LETTER_5.button.parent().on("click","div:not(.disabled-device-button)",function(){
-        socket.send(JSON.stringify({device:CONTROL_ELEMENTS.LOGO_LETTER_5.identifier, power: true, color: CONTROL_ELEMENTS.LOGO_LETTER_5.colorInput.val().substr(1)}));
+    CONTROL_ELEMENTS.LOGO_LETTER_5.button.parent().on("click", "div:not(.disabled-device-button)", function () {
+        socket.send(JSON.stringify({
+            device: CONTROL_ELEMENTS.LOGO_LETTER_5.identifier,
+            power: true,
+            color: CONTROL_ELEMENTS.LOGO_LETTER_5.colorInput.val().substr(1)
+        }));
     })
 
     connect();

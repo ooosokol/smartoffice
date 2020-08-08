@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class LaserDevice extends AbstractDevice implements Device {
     Short level = 0;
     Integer period = 0;
-    private static final Duration NOT_READY_TIME = Duration.ofMinutes(5);
+    private static final Duration NOT_READY_TIME = Duration.ofMinutes(15);
 
 
     public LaserDevice(DeviceEnum device) {

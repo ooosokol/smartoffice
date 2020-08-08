@@ -27,7 +27,7 @@ public class MegatronController {
             return "megatron3000Inactive";
         }
     }
-    @PostMapping("/megatron/process")
+    @PostMapping("/megatronProcess")
     String processMegatronRequest(Model model, @RequestParam("token") String token){
         if(megatronSokolService.getMegatronPowerState()){
             model.addAttribute("testToken", megatronSokolService.getMegatronTestToken());

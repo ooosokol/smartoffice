@@ -116,7 +116,11 @@ public class MegatronSokolServiceImpl  {
 
             devicesService.sendRequest(request);
 
-//            Time.sleep(10000);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.pwm1);
@@ -132,7 +136,7 @@ public class MegatronSokolServiceImpl  {
         counter.getAndIncrement();
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 25000)
     public void counterIncrement(){
         counter.incrementAndGet();
     }

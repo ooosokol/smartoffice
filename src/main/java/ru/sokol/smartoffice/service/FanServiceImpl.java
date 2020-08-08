@@ -53,14 +53,14 @@ public class FanServiceImpl {
         cpuTemp += random.nextInt(8) - 4;
         fanRpm += random.nextInt(400) - 200;
         long deltaCountFile = Math.abs(captchaService.getCurrentAtomicValue() - lastAtomicValue);
-        if (deltaCountFile > 250) {
-            cpuLoad += 5 + random.nextInt(5);
-            cpuTemp += 2 + random.nextInt(4);
-            fanRpm += 200 + random.nextInt(200);
+        if (deltaCountFile > 50) {
+            cpuLoad += 2 + random.nextInt(5);
+            cpuTemp += 1 + random.nextInt(4);
+            fanRpm += 100 + random.nextInt(200);
         } else if (deltaCountFile < 10) {
-            cpuLoad -= random.nextInt(5);
-            cpuTemp -= random.nextInt(4);
-            fanRpm -= random.nextInt(200);
+            cpuLoad -= random.nextInt(3);
+            cpuTemp -= random.nextInt(2);
+            fanRpm -= random.nextInt(100);
         }
         cpuLoad = Math.max(MIN_CPU_LOAD,Math.min(MAX_CPU_LOAD,cpuLoad));
         cpuTemp = Math.max(MIN_CPU_TEMP,Math.min(MAX_CPU_TEMP,cpuTemp));

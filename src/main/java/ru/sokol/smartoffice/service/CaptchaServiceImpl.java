@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CaptchaServiceImpl implements CaptchaService {
-    private final Duration BASE_CAPTCHA_LATENCY_DURATION = Duration.ofMillis(4369);
+    private final Duration BASE_CAPTCHA_LATENCY_DURATION = Duration.ofMillis(3281);
     @SuppressWarnings("FieldCanBeLocal")
     private final int CAPTCHA_LATENCY_NEXT_INT_BOUND_MILLIS = 1632;
 
