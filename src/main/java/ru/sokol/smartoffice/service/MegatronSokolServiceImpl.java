@@ -18,12 +18,14 @@ public class MegatronSokolServiceImpl  {
     private final AtomicLong counter;
 
     private final DevicesServiceImpl devicesService;
+    private final FanServiceImpl fanService;
 
     private final DeviceEnum megatronLaserSwitch = DeviceEnum.SWITCH2;
 
 
-    public MegatronSokolServiceImpl(DevicesServiceImpl devicesService) {
+    public MegatronSokolServiceImpl(DevicesServiceImpl devicesService, FanServiceImpl fanService) {
         this.devicesService = devicesService;
+        this.fanService = fanService;
         counter = new AtomicLong(43);
     }
 
@@ -92,6 +94,9 @@ public class MegatronSokolServiceImpl  {
             devicesService.sendRequest(request);
 
 
+            if(fanService.getCurrentPhase() < (short) 5){
+                fanService.setCurrentPhase((short)5);
+            }
           /*  try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
@@ -144,6 +149,9 @@ public class MegatronSokolServiceImpl  {
             request.setPeriod((int) Duration.ofSeconds(5).toMillis());
 
             devicesService.sendRequest(request);
+            if(fanService.getCurrentPhase() < (short) 4){
+                fanService.setCurrentPhase((short)4);
+            }
 
         } else {
             throw new MegatronException("Invalid token");

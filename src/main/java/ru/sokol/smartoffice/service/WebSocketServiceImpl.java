@@ -15,7 +15,6 @@ import ru.sokol.smartoffice.model.device.Device;
 import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.model.device.LedDevice;
 import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
-import ru.sokol.smartoffice.model.deviceControlApiModel.HardwareDeviceEnum;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,6 +27,7 @@ public class WebSocketServiceImpl {
 
     private final DevicesServiceImpl devicesService;
     private final ObjectMapper objectMapper;
+    private final FanServiceImpl fanService;
 
     private final WebSocketMessage<?> PING_MESSAGE = new TextMessage("{\"action\":\"ping\"}");
     private final WebSocketMessage<?> UNKNOWN_DEVICE = new TextMessage("{\"message\":\"unknown device\"}");
@@ -37,9 +37,10 @@ public class WebSocketServiceImpl {
 
     Pattern COLOR_PATTERN = Pattern.compile("^[A-Fa-f0-9]{6}$");
 
-    public WebSocketServiceImpl(DevicesServiceImpl devicesService, ObjectMapper objectMapper) {
+    public WebSocketServiceImpl(DevicesServiceImpl devicesService, ObjectMapper objectMapper, FanServiceImpl fanService) {
         this.devicesService = devicesService;
         this.objectMapper = objectMapper;
+        this.fanService = fanService;
     }
 
 
@@ -84,6 +85,15 @@ public class WebSocketServiceImpl {
             if (!request.getDevice().getDevice().isDeviceReady()) {
                 sendMessage(session, DEVICE_NOT_READY);
                 return;
+            }
+            if(DeviceEnum.SWITCH2.equals(request.getDevice()) && !request.getPower()){
+                sendMessage(session, DEVICE_NOT_READY);
+                return;
+            }
+            if(DeviceEnum.SWITCH2.equals(request.getDevice())){
+                if(fanService.getCurrentPhase() < (short) 2){
+                    fanService.setCurrentPhase((short)2);
+                }
             }
             var deviceControlRequest = new DeviceControlRequest();
             deviceControlRequest.setDevice(request.getDevice().getHardwareDevice());

@@ -1,6 +1,8 @@
 package ru.sokol.smartoffice.service;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,10 @@ public class FanServiceImpl {
     private final Integer MAX_CPU_LOAD = 100;
     private final Integer MIN_FAN_RPM = 1000;
     private final Integer MAX_FAN_RPM = 4200;
+
+    @Getter
+    @Setter
+    private Short currentPhase = 0;
 
 
     private final Random random = new Random();
@@ -77,6 +83,7 @@ public class FanServiceImpl {
         fanRequest.setDevice(HardwareDeviceEnum.ssr3);
         fanRequest.setPower(fanDevice.getLevel() > 30);
         fanRequest.setLevel((short)fanDevice.getLevel() > 30 ? fanDevice.getLevel():0);
+        fanRequest.setState(currentPhase.equals((short) 0)?((short)fanDevice.getLevel() > 30 ? (short) 1:(short)0):currentPhase);
         devicesService.sendRequest(fanRequest);
 
       /*  fanRequest = new DeviceControlRequest();
@@ -88,6 +95,7 @@ public class FanServiceImpl {
         fanRequest.setDevice(HardwareDeviceEnum.ssr2);
         fanRequest.setPower(fanDevice.getLevel() > 180);
         fanRequest.setLevel((short) fanDevice.getLevel() > 180 ? fanDevice.getLevel():0);
+        fanRequest.setState(currentPhase.equals((short) 0)?((short)fanDevice.getLevel() > 30 ? (short) 1:(short)0):currentPhase);
         devicesService.sendRequest(fanRequest);
 
 

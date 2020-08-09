@@ -7,14 +7,17 @@ import ru.sokol.smartoffice.model.device.DeviceEnum;
 import ru.sokol.smartoffice.model.deviceControlApiModel.DeviceControlRequest;
 import ru.sokol.smartoffice.model.deviceControlApiModel.HardwareDeviceEnum;
 import ru.sokol.smartoffice.service.DevicesServiceImpl;
+import ru.sokol.smartoffice.service.FanServiceImpl;
 
 
 @Controller
 public class AdminController {
     private final DevicesServiceImpl devicesService;
+    private final FanServiceImpl fanService;
 
-    public AdminController(DevicesServiceImpl devicesService) {
+    public AdminController(DevicesServiceImpl devicesService, FanServiceImpl fanService) {
         this.devicesService = devicesService;
+        this.fanService = fanService;
     }
 
     @GetMapping("/uniqueAdminController/activateLaser")
@@ -25,6 +28,10 @@ public class AdminController {
         laserActivateRequest.setPower(true);
         devicesService.sendRequest(laserActivateRequest);
         DeviceEnum.LASER_POWER.getDevice().setPower(true);
+
+        if(fanService.getCurrentPhase() < (short) 3){
+            fanService.setCurrentPhase((short)3);
+        }
         return "turn on";
     }
 }
