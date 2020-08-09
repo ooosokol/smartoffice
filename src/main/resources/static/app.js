@@ -78,7 +78,7 @@ function setDeviceStatus(controlPackage) {
     let controlElement = undefined;
     for (const [, controlElementVar] of Object.entries(CONTROL_ELEMENTS)) {
         if (controlElementVar.identifier === controlPackage.device) {
-            controlElement = CONTROL_ELEMENTS[controlElementVar];
+            controlElement = controlElementVar;
             break;
         }
     }
