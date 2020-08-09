@@ -9,25 +9,25 @@
     <meta property="og:title" content="Мегатрон 3000"/>
     <meta property="og:description" content=""/>
     <meta property="og:type" content="website"/>
-    <link rel="canonical" href="megatron3000"><!--/metatextblock-->
+    <link rel="canonical" href="megatron"><!--/metatextblock-->
     <meta property="fb:app_id" content="257953674358265"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <link rel="shortcut icon" href="images/tildafavicon.ico" type="image/x-icon"/><!-- Assets -->
-    <link rel="stylesheet" href="css/tilda-grid-3.0.min.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="css/tilda-blocks-2.12.css?t=1596663071" type="text/css" media="all"/>
-    <link rel="stylesheet" href="css/tilda-animation-1.0.min.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="css/tilda-slds-1.4.min.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="css/tilda-zoom-2.0.min.css" type="text/css" media="all"/>
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/tilda-scripts-2.8.min.js"></script>
-    <script src="js/tilda-blocks-2.7.js?t=1596663071"></script>
-    <script src="js/lazyload-1.3.min.js" charset="utf-8"></script>
-    <script src="js/tilda-animation-1.0.min.js" charset="utf-8"></script>
-    <script src="js/tilda-slds-1.4.min.js" charset="utf-8"></script>
-    <script src="js/hammer.min.js" charset="utf-8"></script>
-    <script src="js/tilda-zoom-2.0.min.js" charset="utf-8"></script>
-    <script src="js/tilda-animation-sbs-1.0.min.js" charset="utf-8"></script>
+    <link rel="shortcut icon" href="//ooosokol.ru/images/tildafavicon.ico" type="image/x-icon"/><!-- Assets -->
+    <link rel="stylesheet" href="//ooosokol.ru/css/tilda-grid-3.0.min.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="//ooosokol.ru/css/tilda-blocks-2.12.css?t=1596663071" type="text/css" media="all"/>
+    <link rel="stylesheet" href="//ooosokol.ru/css/tilda-animation-1.0.min.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="//ooosokol.ru/css/tilda-slds-1.4.min.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="//ooosokol.ru/css/tilda-zoom-2.0.min.css" type="text/css" media="all"/>
+    <script src="//ooosokol.ru/js/jquery-1.10.2.min.js"></script>
+    <script src="//ooosokol.ru/js/tilda-scripts-2.8.min.js"></script>
+    <script src="//ooosokol.ru/js/tilda-blocks-2.7.js?t=1596663071"></script>
+    <script src="//ooosokol.ru/js/lazyload-1.3.min.js" charset="utf-8"></script>
+    <script src="//ooosokol.ru/js/tilda-animation-1.0.min.js" charset="utf-8"></script>
+    <script src="//ooosokol.ru/js/tilda-slds-1.4.min.js" charset="utf-8"></script>
+    <script src="//ooosokol.ru/js/hammer.min.js" charset="utf-8"></script>
+    <script src="//ooosokol.ru/js/tilda-zoom-2.0.min.js" charset="utf-8"></script>
+    <script src="//ooosokol.ru/js/tilda-animation-sbs-1.0.min.js" charset="utf-8"></script>
     <script type="text/javascript">window.dataLayer = window.dataLayer || [];</script>
     <script type="text/javascript">if ((/bot|google|yandex|baidu|bing|msn|duckduckbot|teoma|slurp|crawler|spider|robot|crawling|facebook/i.test(navigator.userAgent)) === false && typeof (sessionStorage) != 'undefined' && sessionStorage.getItem('visited') !== 'y') {
             var style = document.createElement('style');
@@ -42,6 +42,21 @@
                 }, 400);
             });
         }</script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(66284041, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/66284041" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body class="t-body" style="margin:0;"><!--allrecords-->
 <div id="allrecords" data-tilda-export="yes" class="t-records" data-hook="blocks-collection-content-node"
@@ -1127,9 +1142,9 @@
                      data-field-width-res-480-value="247" data-field-width-res-320-value="137"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="/"> <img
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/"> <img
                         class='tn-atom__img t-img'
-                        data-original='images/tild6336-3233-4566-a136-623266383333__web_studio_sokol.png'
+                        data-original='//ooosokol.ru/images/tild6336-3233-4566-a136-623266383333__web_studio_sokol.png'
                         imgfield='tn_img_1594126232344'> </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594126244710' data-elem-id='1594126244710'
                      data-elem-type='shape' data-field-top-value="15" data-field-top-res-960-value="18"
@@ -1157,7 +1172,7 @@
                      data-field-container-value="grid" data-field-topunits-value="" data-field-leftunits-value=""
                      data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3461-3131-4639-b765-353265643930__mail_us.png'
+                                              data-original='//ooosokol.ru/images/tild3461-3131-4639-b765-353265643930__mail_us.png'
                                               imgfield='tn_img_1594126461002'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594126492824' data-elem-id='1594126492824'
@@ -1172,7 +1187,7 @@
                      data-animate-sbs-trgels="1594126492824"
                      data-animate-sbs-opts="[{'ti':'0','mx':'0','my':'0','sx':'1','sy':'1','op':'1','ro':'0','bl':'0','ea':'','dt':'0'},{'ti':'1000','mx':'0','my':'0','sx':'1','sy':'1','op':'1','ro':'0','bl':'0','ea':'','dt':'0'}]">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild6432-3563-4630-a234-633035356238__burger.png'
+                                              data-original='//ooosokol.ru/images/tild6432-3563-4630-a234-633035356238__burger.png'
                                               imgfield='tn_img_1594126492824'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594126564862' data-elem-id='1594126564862'
@@ -1199,7 +1214,7 @@
                      data-field-container-value="grid" data-field-topunits-value="" data-field-leftunits-value=""
                      data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3737-6665-4933-b536-373830343438____.png'
+                                              data-original='//ooosokol.ru/images/tild3737-6665-4933-b536-373830343438____.png'
                                               imgfield='tn_img_1594127000761'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594127074891' data-elem-id='1594127074891'
@@ -1211,7 +1226,7 @@
                      data-field-container-value="grid" data-field-topunits-value="" data-field-leftunits-value=""
                      data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3061-6532-4134-b334-646136326464__photo.png'
+                                              data-original='//ooosokol.ru/images/tild3061-6532-4134-b334-646136326464__photo.png'
                                               imgfield='tn_img_1594127074891'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594141915746' data-elem-id='1594141915746'
@@ -1227,7 +1242,7 @@
                      data-field-widthunits-value="" data-animate-sbs-event="click"
                      data-animate-sbs-opts="[{'ti':'0','mx':'0','my':'0','sx':'1','sy':'1','op':'1','ro':'0','bl':'0','ea':'','dt':'0'}]">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3536-3537-4035-b637-366339343730_________.png'
+                                              data-original='//ooosokol.ru/images/tild3536-3537-4035-b637-366339343730_________.png'
                                               imgfield='tn_img_1594141915746'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594145394160' data-elem-id='1594145394160'
@@ -1241,7 +1256,7 @@
                      data-field-container-value="grid" data-field-topunits-value="" data-field-leftunits-value=""
                      data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3434-6364-4739-b238-643734373161__cat.gif'
+                                              data-original='//ooosokol.ru/images/tild3434-6364-4739-b238-643734373161__cat.gif'
                                               imgfield='tn_img_1594145394160'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2114416421594145536969' data-elem-id='1594145536969'
@@ -1798,8 +1813,8 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="contacts"> <img class='tn-atom__img t-img'
-                                                                                             data-original='images/tild3231-6166-4034-a438-626166363865__button_kontakti.png'
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/contacts"> <img class='tn-atom__img t-img'
+                                                                                             data-original='//ooosokol.ru/images/tild3231-6166-4034-a438-626166363865__button_kontakti.png'
                                                                                              imgfield='tn_img_1594207705260'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114417461594207705269' data-elem-id='1594207705269'
@@ -1812,9 +1827,9 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="office-interactive"> <img
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/office-interactive"> <img
                                 class='tn-atom__img t-img'
-                                data-original='images/tild3836-3264-4234-b730-393937333737__button_nash_office.png'
+                                data-original='//ooosokol.ru/images/tild3836-3264-4234-b730-393937333737__button_nash_office.png'
                                 imgfield='tn_img_1594207705269'> </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114417461594207705276' data-elem-id='1594207705276'
                      data-elem-type='image' data-field-top-value="20" data-field-top-res-960-value="20"
@@ -1826,8 +1841,8 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="otzivy"> <img class='tn-atom__img t-img'
-                                                                                           data-original='images/tild6338-6439-4238-a437-326636303633__button_otzivi.png'
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/otzivy"> <img class='tn-atom__img t-img'
+                                                                                           data-original='//ooosokol.ru/images/tild6338-6439-4238-a437-326636303633__button_otzivi.png'
                                                                                            imgfield='tn_img_1594207705276'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114417461594207705283' data-elem-id='1594207705283'
@@ -1840,8 +1855,8 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="portfolio"> <img class='tn-atom__img t-img'
-                                                                                              data-original='images/tild3662-3966-4532-b332-616330356633__button_portfolio.png'
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/portfolio"> <img class='tn-atom__img t-img'
+                                                                                              data-original='//ooosokol.ru/images/tild3662-3966-4532-b332-616330356633__button_portfolio.png'
                                                                                               imgfield='tn_img_1594207705283'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114417461594207705290' data-elem-id='1594207705290'
@@ -1854,8 +1869,8 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="pricelist"> <img class='tn-atom__img t-img'
-                                                                                              data-original='images/tild6263-3061-4862-b763-346165386135__button_price_list.png'
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/pricelist"> <img class='tn-atom__img t-img'
+                                                                                              data-original='//ooosokol.ru/images/tild6263-3061-4862-b763-346165386135__button_price_list.png'
                                                                                               imgfield='tn_img_1594207705290'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114417461594207705299' data-elem-id='1594207705299'
@@ -1868,8 +1883,8 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="uslugi"> <img class='tn-atom__img t-img'
-                                                                                           data-original='images/tild3139-3038-4036-b731-386665316263__button_uslugi.png'
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/uslugi"> <img class='tn-atom__img t-img'
+                                                                                           data-original='//ooosokol.ru/images/tild3139-3038-4036-b731-386665316263__button_uslugi.png'
                                                                                            imgfield='tn_img_1594207705299'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2114417461594207741089' data-elem-id='1594207741089'
@@ -2589,7 +2604,7 @@
                      data-field-container-value="grid" data-field-topunits-value="" data-field-leftunits-value=""
                      data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild6561-3434-4565-b032-656234633535____.png'
+                                              data-original='//ooosokol.ru/images/tild6561-3434-4565-b032-656234633535____.png'
                                               imgfield='tn_img_1594388592148'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2100417481596194296262' data-elem-id='1596194296262'
@@ -2618,7 +2633,7 @@
                      data-field-container-value="grid" data-field-topunits-value="" data-field-leftunits-value=""
                      data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild6638-6563-4162-b163-386538363263___.png'
+                                              data-original='//ooosokol.ru/images/tild6638-6563-4162-b163-386538363263___.png'
                                               imgfield='tn_img_1596568791185'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2100417481596569268367' data-elem-id='1596569268367'
@@ -3199,7 +3214,7 @@
                      data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value=""
                      data-field-leftunits-value="" data-field-heightunits-value="" data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3165-3130-4934-b436-373036323864__png-transparent-russ.png'
+                                              data-original='//ooosokol.ru/images/tild3165-3130-4934-b436-373036323864__png-transparent-russ.png'
                                               imgfield='tn_img_1594212211483'></div>
                 </div>
                 <div class='t396__elem tn-elem tn-elem__2181605431596460982376' data-elem-id='1596460982376'
@@ -3214,7 +3229,7 @@
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
                      data-field-widthunits-value="">
                     <div class='tn-atom'><img class='tn-atom__img t-img'
-                                              data-original='images/tild3231-3435-4433-b737-393332653364__bot_end.png'
+                                              data-original='//ooosokol.ru/images/tild3231-3435-4433-b737-393332653364__bot_end.png'
                                               imgfield='tn_img_1596460982376'></div>
                 </div>
             </div>
