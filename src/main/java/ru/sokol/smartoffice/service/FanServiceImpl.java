@@ -79,11 +79,11 @@ public class FanServiceImpl {
         fanRequest.setLevel((short)fanDevice.getLevel() > 30 ? fanDevice.getLevel():0);
         devicesService.sendRequest(fanRequest);
 
-        fanRequest = new DeviceControlRequest();
+      /*  fanRequest = new DeviceControlRequest();
         fanRequest.setDevice(HardwareDeviceEnum.sw4);
         fanRequest.setPower(fanDevice.getLevel() > 30);
         devicesService.sendRequest(fanRequest);
-
+*/
         fanRequest = new DeviceControlRequest();
         fanRequest.setDevice(HardwareDeviceEnum.ssr2);
         fanRequest.setPower(fanDevice.getLevel() > 180);
@@ -91,9 +91,9 @@ public class FanServiceImpl {
         devicesService.sendRequest(fanRequest);
 
 
-        fanRequest = new DeviceControlRequest();
+  /*      fanRequest = new DeviceControlRequest();
         fanRequest.setDevice(HardwareDeviceEnum.sw2);
         fanRequest.setPower(fanDevice.getLevel() > 100);
-        devicesService.sendRequest(fanRequest);
+        devicesService.sendRequest(fanRequest);*/
     }
 }

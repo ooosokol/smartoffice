@@ -37,14 +37,15 @@ public class MegatronSokolServiceImpl  {
     }
 
     public boolean getMegatronPowerState(){
-        return megatronLaserSwitch.getDevice().getPower();
+        return megatronLaserSwitch.getDevice().getPower() && DeviceEnum.LASER_POWER.getDevice().getPower();
     }
 
 
 
     public void startMegatron(String megatronToken) throws MegatronException {
         if (getMegatronToken().equals(megatronToken)) {
-            DeviceControlRequest request = new DeviceControlRequest();
+            DeviceControlRequest request;
+            /*request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.sw10);
             request.setPower(true);
 
@@ -79,7 +80,7 @@ public class MegatronSokolServiceImpl  {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.pwm1);
@@ -91,7 +92,7 @@ public class MegatronSokolServiceImpl  {
             devicesService.sendRequest(request);
 
 
-            try {
+          /*  try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -105,7 +106,7 @@ public class MegatronSokolServiceImpl  {
             request.setPeriod((int) Duration.ofMinutes(1).toMillis());
 
             devicesService.sendRequest(request);
-
+*/
 
 
 
@@ -115,7 +116,9 @@ public class MegatronSokolServiceImpl  {
             }
 
 
-            DeviceControlRequest request = new DeviceControlRequest();
+            DeviceControlRequest request;
+
+            /*request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.sw10);
             request.setPower(true);
 
@@ -132,7 +135,7 @@ public class MegatronSokolServiceImpl  {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.pwm1);
