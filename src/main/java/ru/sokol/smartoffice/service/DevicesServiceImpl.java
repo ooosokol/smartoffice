@@ -18,12 +18,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DevicesServiceImpl {
 
-    private final DeviceApiClientService deviceApiClientService;
     private final ObjectMapper objectMapper;
     private final DeviceApiBusSender deviceApiBusSender;
 
-    public DevicesServiceImpl(DeviceApiClientService deviceApiClientService, ObjectMapper objectMapper, DeviceApiBusSender deviceApiBusSender) {
-        this.deviceApiClientService = deviceApiClientService;
+    public DevicesServiceImpl(ObjectMapper objectMapper, DeviceApiBusSender deviceApiBusSender) {
         this.objectMapper = objectMapper;
         this.deviceApiBusSender = deviceApiBusSender;
     }
