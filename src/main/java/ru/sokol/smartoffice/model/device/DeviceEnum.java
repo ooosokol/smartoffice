@@ -18,8 +18,8 @@ public enum  DeviceEnum {
     LOGO_LETTER_1(LedDevice.class,true, false,"81a2e1ee-4b18-4364-ab59-2f6ef1140efa", (short)456,(short) 587,(short)20),
     LOGO_LETTER_2(LedDevice.class,true, false,"e0be0e83-79e3-419b-8381-edea7806d377", (short)337,(short) 456,(short)35),
     LOGO_LETTER_3(LedDevice.class,true, false,"850d68ab-7235-4ae6-8f6e-cdbeb88df8c2", (short)211,(short) 337,(short)50),
-    LOGO_LETTER_4(LedDevice.class,true, false,"1a27947b-601a-42ec-9bf5-81c5106ef3c9", (short)111,(short) 211,(short)50),
-    LOGO_LETTER_5(LedDevice.class,true, false, "fd973a42-4a63-4a9d-8f2f-fa9b994df487", (short)0,(short) 111,(short)50);
+    LOGO_LETTER_4(LedDevice.class,true, false,"1a27947b-601a-42ec-9bf5-81c5106ef3c9", (short)111,(short) 211,(short)35),
+    LOGO_LETTER_5(LedDevice.class,true, false, "fd973a42-4a63-4a9d-8f2f-fa9b994df487", (short)0,(short) 111,(short)20);
 
 
     String externalIdent;

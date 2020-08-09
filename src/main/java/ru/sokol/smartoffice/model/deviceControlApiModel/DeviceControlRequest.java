@@ -30,8 +30,6 @@ public class DeviceControlRequest implements Serializable {
 
     Short start;
 
-
-
-
+    Short state;
 
 }
