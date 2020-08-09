@@ -1,3 +1,4 @@
+/*
 package ru.sokol.smartoffice.config;
 
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -17,3 +18,4 @@ public class MonitoringConfig {
         return new io.sentry.spring.SentryServletContextInitializer();
     }
 }
+*/
