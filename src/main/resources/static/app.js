@@ -5,8 +5,8 @@ let login;
 let password;
 
 function connect() {
-    // socket = new WebSocket((location.protocol === 'https:' ? 'wss:':'ws:') + '//ws.' + window.location.host + '/ws');
-    socket = new WebSocket((location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + '/ws');
+    socket = new WebSocket((location.protocol === 'https:' ? 'wss:':'ws:') + '//ws.' + window.location.host + '/ws');
+    // socket = new WebSocket((location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + '/ws');
     socket.onopen = function () {
         console.log("clientWebSocket.onopen", socket);
         console.log("clientWebSocket.readyState", "websocketstatus");

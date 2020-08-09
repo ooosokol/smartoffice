@@ -45,6 +45,12 @@ public class MegatronSokolServiceImpl  {
     public void startMegatron(String megatronToken) throws MegatronException {
         if (getMegatronToken().equals(megatronToken)) {
             DeviceControlRequest request = new DeviceControlRequest();
+            request.setDevice(HardwareDeviceEnum.sw10);
+            request.setPower(true);
+
+            devicesService.sendRequest(request);
+
+            request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.sw12);
             request.setPower(true);
             request.setPeriod((int) Duration.ofMinutes(3).toMillis());
@@ -110,6 +116,12 @@ public class MegatronSokolServiceImpl  {
 
 
             DeviceControlRequest request = new DeviceControlRequest();
+            request.setDevice(HardwareDeviceEnum.sw10);
+            request.setPower(true);
+
+            devicesService.sendRequest(request);
+
+            request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.sw9);
             request.setPower(true);
             request.setPeriod((int) Duration.ofSeconds(1).toMillis());
