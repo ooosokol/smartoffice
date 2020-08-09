@@ -1,7 +1,7 @@
 "use strict";
 
 let socket;
-let login;
+let login = "admin";
 let password;
 let lastMessageTime;
 let pingScheduler;
@@ -21,11 +21,11 @@ function connect() {
             if ('indicator' in controlElement) {
                 controlElement.indicator.css('background-color', COLOR_DICT.inactive);
             }
-            if ('colorInput' in controlElement){
-                controlElement.colorInput.prop( 'disabled', true );
+            if ('colorInput' in controlElement) {
+                controlElement.colorInput.prop('disabled', true);
             }
         }
-        setTimeout(connect,Math.floor(5+Math.random()+10)*1000);
+        setTimeout(connect, Math.floor(5 + Math.random() + 10) * 1000);
     }
     socket.onerror = function (error) {
 
@@ -88,7 +88,7 @@ function setDeviceStatus(controlPackage) {
     if (controlPackage.color) {
         if ('colorInput' in controlElement) {
             controlElement.colorInput.val('#' + controlPackage.color);
-            controlElement.colorInput.prop( 'disabled', false );
+            controlElement.colorInput.prop('disabled', false);
         }
     }
     if (controlPackage.power) {
@@ -109,27 +109,27 @@ function setDeviceStatus(controlPackage) {
             controlElement.colorInput.val('#000000');
         }
     }
-    controlElement.lastChange =  new Date();
+    controlElement.lastChange = new Date();
     controlElement.button.removeClass('disabled-device-button');
     controlElement.button.addClass('overlayed-device-button');
     updateButtonOverlayText(controlElement.button, controlElement.timeout);
 }
 
-function updateButtonOverlayText(button,timeInMillis){
-    button.next('.button-overlay').text(Math.floor(timeInMillis/100)/10 + ' секунд');
+function updateButtonOverlayText(button, timeInMillis) {
+    button.next('.button-overlay').text(Math.floor(timeInMillis / 100) / 10 + ' секунд');
 }
 
-const deviceTimingScheduler = setInterval(()=>{
+const deviceTimingScheduler = setInterval(() => {
     let overlayedButtons = $('.tn-atom.device-button.overlayed-device-button');
-    if(overlayedButtons.length === 0){
+    if (overlayedButtons.length === 0) {
         return;
     }
     for (const [, controlElement] of Object.entries(CONTROL_ELEMENTS)) {
         if (controlElement.button.is(overlayedButtons)) {
             const timeLeft = (controlElement.lastChange - new Date()) + controlElement.timeout;
-            if(timeLeft<0){
+            if (timeLeft < 0) {
                 controlElement.button.removeClass('overlayed-device-button');
-            }else {
+            } else {
                 updateButtonOverlayText(controlElement.button, timeLeft);
             }
         }
@@ -215,87 +215,31 @@ function AppOnFinishLoad() {
 
     }
 
-    CONTROL_ELEMENTS.SWITCH1.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.SWITCH1.identifier,
-            power: CONTROL_ELEMENTS.SWITCH1.label.text() === "off"
-        }));
-    })
-    CONTROL_ELEMENTS.SWITCH4.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.SWITCH4.identifier,
-            power: CONTROL_ELEMENTS.SWITCH4.label.text() === "off"
-        }));
-    })
-    CONTROL_ELEMENTS.SWITCH5.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.SWITCH5.identifier,
-            power: CONTROL_ELEMENTS.SWITCH5.label.text() === "off"
-        }));
-    })
+    $(document).on("click", ".device-button:not(.disabled-device-button)", function (event) {
+        for (const [deviceName, controlElement] of Object.entries(CONTROL_ELEMENTS)) {
+            if (controlElement.button.is(event.target)) {
+                let requestData = {
+                    device: controlElement.identifier
+                };
+                requestData.power = "label" in controlElement?CONTROL_ELEMENTS.SWITCH1.label.text() === "off":true;
+                if(deviceName==="SWITCH3"){
+                    if (login && password) {
+                        requestData.login = login;
+                        requestData.password = password;
+                    }else {
+                        showLoginPasswordPopup();
+                        return ;
+                    }
+                }
+                if("colorInput" in controlElement){
+                    requestData.color = controlElement.colorInput.val().substr(1);
+                }
 
-    CONTROL_ELEMENTS.SWITCH3.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        if (login && password) {
-            socket.send(JSON.stringify({
-                device: CONTROL_ELEMENTS.SWITCH3.identifier,
-                power: CONTROL_ELEMENTS.SWITCH3.label.text() === "off",
-                login: login,
-                password: password
-            }));
-        } else {
-            showLoginPasswordPopup();
+                socket.send(JSON.stringify(requestData));
+
+                event.target.addClass("disabled-device-button");
+            }
         }
-    })
-
-    CONTROL_ELEMENTS.SWITCH4.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.SWITCH4.identifier,
-            power: CONTROL_ELEMENTS.SWITCH1.label.text() === "off"
-        }));
-    })
-
-    CONTROL_ELEMENTS.SWITCH5.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.SWITCH5.identifier,
-            power: CONTROL_ELEMENTS.SWITCH1.label.text() === "off"
-        }));
-    })
-
-
-    CONTROL_ELEMENTS.LOGO_LETTER_1.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.LOGO_LETTER_1.identifier,
-            power: true,
-            color: CONTROL_ELEMENTS.LOGO_LETTER_1.colorInput.val().substr(1)
-        }));
-    })
-    CONTROL_ELEMENTS.LOGO_LETTER_2.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.LOGO_LETTER_2.identifier,
-            power: true,
-            color: CONTROL_ELEMENTS.LOGO_LETTER_2.colorInput.val().substr(1)
-        }));
-    })
-    CONTROL_ELEMENTS.LOGO_LETTER_3.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.LOGO_LETTER_3.identifier,
-            power: true,
-            color: CONTROL_ELEMENTS.LOGO_LETTER_3.colorInput.val().substr(1)
-        }));
-    })
-    CONTROL_ELEMENTS.LOGO_LETTER_4.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.LOGO_LETTER_4.identifier,
-            power: true,
-            color: CONTROL_ELEMENTS.LOGO_LETTER_4.colorInput.val().substr(1)
-        }));
-    })
-    CONTROL_ELEMENTS.LOGO_LETTER_5.button.parent().on("click", ".device-button:not(.disabled-device-button)", function () {
-        socket.send(JSON.stringify({
-            device: CONTROL_ELEMENTS.LOGO_LETTER_5.identifier,
-            power: true,
-            color: CONTROL_ELEMENTS.LOGO_LETTER_5.colorInput.val().substr(1)
-        }));
     })
 
     connect();
