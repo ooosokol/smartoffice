@@ -9,7 +9,7 @@
     <meta property="og:title" content="Мегатрон 3000"/>
     <meta property="og:description" content=""/>
     <meta property="og:type" content="website"/>
-    <link rel="canonical" href="megatron"><!--/metatextblock-->
+    <link rel="canonical" href="/"><!--/metatextblock-->
     <meta property="fb:app_id" content="257953674358265"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta http-equiv="x-dns-prefetch-control" content="on">
