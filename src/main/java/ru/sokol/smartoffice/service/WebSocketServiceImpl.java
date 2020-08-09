@@ -32,7 +32,7 @@ public class WebSocketServiceImpl {
     private final WebSocketMessage<?> PING_MESSAGE = new TextMessage("{\"action\":\"ping\"}");
     private final WebSocketMessage<?> UNKNOWN_DEVICE = new TextMessage("{\"message\":\"unknown device\"}");
     private final WebSocketMessage<?> INVALID_CREDENTIALS = new TextMessage("{\"message\":\"invalid credentials\"}");
-    private final WebSocketMessage<?> DEVICE_NOT_READY = new TextMessage("{\"message\":\"device not ready\"}");
+    private final WebSocketMessage<?> DEVICE_NOT_READY = new TextMessage("{\"message\":\"Подождите 5 секунд\"}");
     private final WebSocketMessage<?> BAD_REQUEST = new TextMessage("{\"message\":\"bad request\"}");
 
     Pattern COLOR_PATTERN = Pattern.compile("^[A-Fa-f0-9]{6}$");
