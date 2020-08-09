@@ -67,10 +67,10 @@ function connect() {
     }
     lastMessageTime = new Date();
     pingScheduler = setInterval(function () {
-        if (Math.abs(lastMessageTime - new Date()) > 90000) {
+        if (Math.abs(lastMessageTime - new Date()) > 30000) {
             socket.close();
         }
-    }, 10000);
+    }, 20000);
 
 }
 

@@ -113,7 +113,7 @@ public class WebSocketServiceImpl {
 
     }
 
-    @Scheduled(fixedRate = 30_000)
+    @Scheduled(fixedRate = 10_000)
     public void sendPingMessage() {
         connectionsMap.values().parallelStream().forEach(session -> sendMessage(session, PING_MESSAGE));
     }
