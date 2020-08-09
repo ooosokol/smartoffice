@@ -3,22 +3,36 @@
 let socket;
 let login;
 let password;
+let lastMessageTime;
+let pingScheduler;
 
 function connect() {
-    socket = new WebSocket((location.protocol === 'https:' ? 'wss:':'ws:') + '//ws.' + window.location.host + '/ws');
-    // socket = new WebSocket((location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + '/ws');
+    socket = new WebSocket((location.protocol === 'https:' ? 'wss:' : 'ws:') + '//ws.' + window.location.host + '/ws');
     socket.onopen = function () {
-        console.log("clientWebSocket.onopen", socket);
-        console.log("clientWebSocket.readyState", "websocketstatus");
+
     }
     socket.onclose = function (close) {
-        console.log("clientWebSocket.onclose", socket, close);
+        clearInterval(pingScheduler);
+        for (const [, controlElement] of Object.entries(CONTROL_ELEMENTS)) {
+            controlElement.button.addClass("disabled-device-button")
+            if ("label" in controlElement) {
+                controlElement.label.text("-");
+            }
+            if ("indicator" in controlElement) {
+                controlElement.indicator.css("background-color", COLOR_DICT.inactive);
+            }
+            if ("colorInput" in controlElement){
+                controlElement.colorInput.prop( "disabled", true );
+            }
+        }
+        setTimeout(connect,Math.floor(5+Math.random()+10)*1000);
     }
     socket.onerror = function (error) {
-        console.log("clientWebSocket.onerror", socket, error);
+
     }
     socket.onmessage = function (message) {
         if (message.data !== undefined) {
+            lastMessageTime = new Date();
             const messageData = JSON.parse(message.data);
             if (messageData.action === "ping") {
                 socket.send(JSON.stringify({action: "pong"}));
@@ -29,9 +43,9 @@ function connect() {
                 if ($popupError.length === 0) {
                     $('body').append('<div id="tilda-popup-for-error" class="js-form-popup-errorbox tn-form__errorbox-popup" style="display: none;"> <div class="t-form__errorbox-text t-text t-text_xs"> error </div> <div class="tn-form__errorbox-close js-errorbox-close"> <div class="tn-form__errorbox-close-line tn-form__errorbox-close-line-left"></div> <div class="tn-form__errorbox-close-line tn-form__errorbox-close-line-right"></div> </div> </div>');
                     $popupError = $('#tilda-popup-for-error');
-                    $('#tilda-popup-for-error').on('click', '.js-errorbox-close', function (e) {
+                    $popupError.on('click', '.js-errorbox-close', function (e) {
                         e.preventDefault();
-                        $('#tilda-popup-for-error').fadeOut();
+                        $popupError.fadeOut();
                         return !1
                     })
                 }
@@ -50,16 +64,20 @@ function connect() {
                 setDeviceStatus(messageData)
             }
         }
-        console.log("clientWebSocket.onmessage", socket, message);
     }
-
+    lastMessageTime = new Date();
+    pingScheduler = setInterval(function () {
+        if (Math.abs(lastMessageTime - new Date()) > 90000) {
+            socket.close();
+        }
+    }, 10000);
 
 }
 
 function setDeviceStatus(controlPackage) {
     let controlElement = undefined;
-    for (let controlElementVar in CONTROL_ELEMENTS) {
-        if (CONTROL_ELEMENTS[controlElementVar].identifier === controlPackage.device) {
+    for (const [, controlElementVar] of Object.entries(CONTROL_ELEMENTS)) {
+        if (controlElementVar.identifier === controlPackage.device) {
             controlElement = CONTROL_ELEMENTS[controlElementVar];
             break;
         }
@@ -70,6 +88,7 @@ function setDeviceStatus(controlPackage) {
     if (controlPackage.color) {
         if ("colorInput" in controlElement) {
             controlElement.colorInput.val('#' + controlPackage.color);
+            controlElement.colorInput.prop( "disabled", false );
         }
     }
     if (controlPackage.power) {
@@ -116,7 +135,7 @@ function AppOnFinishLoad() {
             label: $("[data-elem-id=1594307212547]").children(),
             indicator: $("[data-elem-id=1594307274180]").children(),
             button: $("[data-elem-id=1594222623504]").children(),
-            identifier: "c26f109d-33ce-4287-abe7-b114828f4a47"
+            identifier: "c26f109d-33ce-4287-abe7-b114828f4a47",
         },
         SWITCH3: {
             label: $("[data-elem-id=1594307599681]").children(),
