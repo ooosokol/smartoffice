@@ -2695,7 +2695,7 @@
                      data-field-buttonfontsize-value="14" data-field-buttonfontweight-value="600">
                     <div class='tn_form'>
                         <form id="form211641341" name="form211641341" role="form"
-                              action="/megatronProcess" method="POST" data-formactiontype="2"
+                              action="/megatron" method="POST" data-formactiontype="2"
                               data-inputbox=".t-input-group"
                               class="t-form_inputs-total_1  tn-form_horiz js-send-form-error">
                             <div class="t-form__inputsbox">
@@ -2704,18 +2704,35 @@
                                     <div class="t-input-title" data-redactor-toolbar="no"
                                          field="nullli_title__1531306243545"
                                          style="color:#000;font-weight:400;font-family:jopsima;font-size:16px;padding-bottom:5px;">
-                                        Токен
+                                        Токен<span style="color: #6c757d!important;">активен до ${tokenExpireTime}</span>
                                     </div>
                                     <!--token form MegatronSokolService-->
                                     <div class="t-input-block"><input type="text" name="token"
                                                                       class="t-input js-tilda-rule " value="${testToken}"
                                                                       placeholder="Токен" data-tilda-rule="name"
                                                                       style="color:#000; border:1px solid #000; background-color:#fff; font-size:16px;font-weight:400;height:50px;">
-                                        <div class="t-input-error"></div>
+
+                                        <#if errorMessage??>
+                                        <div class="t-input-error" style="display: block;">
+                                            ${errorMessage}
+                                        </div>
+                                        </#if>
+                                        <#if maxPower??>
+                                            <div class="t-input-error" style="color: #4a753e; display: block;">
+                                                <#if maxPower>
+                                                    Внимание!! произведён боевой запуск мегатрона.
+                                                <#else>
+                                                    произведён тестовый запуск мегатрона.
+                                                </#if>
+                                            </div>
+                                        </#if>
                                     </div>
                                 </div>
-                                <div class="tn-form__submit" style="">
-                                    <button type="submit"
+                                <div class="tn-form__submit"  style="">
+                                    <button type="submit" <#if deviceReady>
+                                    <#else>
+                                        disabled
+                                    </#if>
                                             style="color:#fff;background-color:#2dd62d;font-weight:600;font-size:14px;width:160px;height:50px;padding:0 15px;display:block;">
                                         Стрелять
                                     </button>

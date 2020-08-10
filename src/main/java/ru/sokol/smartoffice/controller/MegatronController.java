@@ -22,19 +22,25 @@ public class MegatronController {
     String getMegatronPage(Model model){
         if(megatronSokolService.getMegatronPowerState()){
             model.addAttribute("testToken", megatronSokolService.getMegatronTestToken());
+            model.addAttribute("deviceReady", megatronSokolService.isReady());
+            model.addAttribute("tokenExpireTime", megatronSokolService.getTokenExpireTime());
             return "megatron3000Active";
         }else {
             return "megatron3000Inactive";
         }
     }
-    @PostMapping("/megatronProcess")
+    @PostMapping("/megatron")
     String processMegatronRequest(Model model, @RequestParam("token") String token){
         if(megatronSokolService.getMegatronPowerState()){
             model.addAttribute("testToken", megatronSokolService.getMegatronTestToken());
+            model.addAttribute("deviceReady", megatronSokolService.isReady());
+            model.addAttribute("tokenExpireTime", megatronSokolService.getTokenExpireTime());
             try {
-                megatronSokolService.startMegatron(token);
+                Boolean maxPower = megatronSokolService.startMegatron(token);
+                model.addAttribute("maxPower", maxPower);
             } catch (MegatronException e) {
                 e.printStackTrace();
+                model.addAttribute("errorMessage", e.getMessage());
             }
             return "megatron3000Active";
         }else {

@@ -96,6 +96,7 @@ public class WebSocketServiceImpl {
                     fanService.setCurrentPhase((short)2);
                 }
                 deviceControlRequest.setProcess(true);
+                deviceControlRequest.setState(fanService.getCurrentPhase());
             }
             deviceControlRequest.setDevice(request.getDevice().getHardwareDevice());
 
