@@ -86,6 +86,7 @@ public class MegatronSokolServiceImpl  {
 
             request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.pwm1);
+            request.setProcess(true);
             request.setPower(true);
             request.setLevel((short)255);
             request.setPeriod((int) Duration.ofMinutes(4).toMillis());
@@ -145,6 +146,7 @@ public class MegatronSokolServiceImpl  {
             request = new DeviceControlRequest();
             request.setDevice(HardwareDeviceEnum.pwm1);
             request.setPower(true);
+            request.setProcess(true);
             request.setLevel((short)10);
             request.setPeriod((int) Duration.ofSeconds(5).toMillis());
 

@@ -94,6 +94,7 @@ public class FanServiceImpl {
         fanRequest = new DeviceControlRequest();
         fanRequest.setDevice(HardwareDeviceEnum.ssr2);
         fanRequest.setPower(fanDevice.getLevel() > 180);
+        fanRequest.setProcess(true);
         fanRequest.setLevel((short) fanDevice.getLevel() > 180 ? fanDevice.getLevel():0);
         fanRequest.setState(currentPhase.equals((short) 0)?((short)fanDevice.getLevel() > 30 ? (short) 1:(short)0):currentPhase);
         devicesService.sendRequest(fanRequest);

@@ -90,12 +90,13 @@ public class WebSocketServiceImpl {
                 sendMessage(session, DEVICE_NOT_READY);
                 return;
             }
+            var deviceControlRequest = new DeviceControlRequest();
             if(DeviceEnum.SWITCH2.equals(request.getDevice())){
                 if(fanService.getCurrentPhase() < (short) 2){
                     fanService.setCurrentPhase((short)2);
                 }
+                deviceControlRequest.setProcess(true);
             }
-            var deviceControlRequest = new DeviceControlRequest();
             deviceControlRequest.setDevice(request.getDevice().getHardwareDevice());
 
 

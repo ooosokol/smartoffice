@@ -152,64 +152,63 @@ const COLOR_DICT = {on: '#5afa32', off: '#fe0002', inactive: '#7a7a7b'}
 let CONTROL_ELEMENTS;
 
 function AppOnFinishLoad() {
-
     CONTROL_ELEMENTS = {
         SWITCH1: {
             label: $('[data-elem-id=1594307212547]').children(),
             indicator: $('[data-elem-id=1594307274180]').children(),
             button: $('[data-elem-id=1594222623504]').children('.device-button'),
-            identifier: 'c26f109d-33ce-4287-abe7-b114828f4a47',
+            identifier: '5eb55c8069be7a0cffb193a8',
             timeout: 5000
         },
         SWITCH3: {
             label: $('[data-elem-id=1594307599681]').children(),
             indicator: $('[data-elem-id=1594307599668]').children(),
             button: $("[data-elem-id=1594307599655]").children('.device-button'),
-            identifier: "58e8d2ce-2c54-40d0-ab6b-a9843cb11979",
+            identifier: "5eb55c8069be7a0cffb193aa",
             timeout: 5000
         },
         SWITCH4: {
             label: $("[data-elem-id=1594307660399]").children(),
             indicator: $("[data-elem-id=1594307660391]").children(),
             button: $("[data-elem-id=1594307660382]").children('.device-button'),
-            identifier: "e716033e-e371-42e5-a0de-802c46f558cc",
+            identifier: "5eb55c8069be7a0cffb193ab",
             timeout: 5000
         },
         SWITCH5: {
             label: $("[data-elem-id=1594307759008]").children(),
             indicator: $("[data-elem-id=1594307759002]").children(),
             button: $("[data-elem-id=1594307758996]").children('.device-button'),
-            identifier: "dd170f02-6f78-44ae-bf53-056d61b1c4b4",
+            identifier: "5eb55c8069be7a0cffb193ac",
             timeout: 5000
         },
         LOGO_LETTER_1: {
             colorInput: $("[data-elem-id=1594731585042]").children().children(),
             button: $("[data-elem-id=1594731753585]").children('.device-button'),
-            identifier: "81a2e1ee-4b18-4364-ab59-2f6ef1140efa",
+            identifier: "5eb55c8069be7a0cffb193ad",
             timeout: 5000
         },
         LOGO_LETTER_2: {
             colorInput: $("[data-elem-id=1594731847810]").children().children(),
             button: $("[data-elem-id=1594731847817]").children('.device-button'),
-            identifier: "e0be0e83-79e3-419b-8381-edea7806d377",
+            identifier: "5eb55c8069be7a0cffb193ae",
             timeout: 5000
         },
         LOGO_LETTER_3: {
             colorInput: $("[data-elem-id=1594731866012]").children().children(),
             button: $("[data-elem-id=1594731866019]").children('.device-button'),
-            identifier: "850d68ab-7235-4ae6-8f6e-cdbeb88df8c2",
+            identifier: "5eb55c8069be7a0cffb193af",
             timeout: 5000
         },
         LOGO_LETTER_4: {
             colorInput: $("[data-elem-id=1594731873703]").children().children(),
             button: $("[data-elem-id=1594731873710]").children('.device-button'),
-            identifier: "1a27947b-601a-42ec-9bf5-81c5106ef3c9",
+            identifier: "5eb55c8069be7a0cffb193b0",
             timeout: 5000
         },
         LOGO_LETTER_5: {
             colorInput: $("[data-elem-id=1594731876087]").children().children(),
             button: $("[data-elem-id=1594731876092]").children('.device-button'),
-            identifier: "fd973a42-4a63-4a9d-8f2f-fa9b994df487",
+            identifier: "5eb55c8069be7a0cffb193b1",
             timeout: 5000
         },
 
@@ -221,7 +220,7 @@ function AppOnFinishLoad() {
                 let requestData = {
                     device: controlElement.identifier
                 };
-                requestData.power = "label" in controlElement?CONTROL_ELEMENTS.SWITCH1.label.text() === "off":true;
+                requestData.power = "label" in controlElement?controlElement.label.text() === "off":true;
                 if(deviceName==="SWITCH3"){
                     if (login && password) {
                         requestData.login = login;
@@ -237,7 +236,7 @@ function AppOnFinishLoad() {
 
                 socket.send(JSON.stringify(requestData));
 
-                event.target.addClass("disabled-device-button");
+                $(event.target).addClass("disabled-device-button");
             }
         }
     })
