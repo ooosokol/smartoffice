@@ -85,19 +85,23 @@ public class MegatronSokolServiceImpl  {
             }*/
 
             request = new DeviceControlRequest();
+
+            if(fanService.getCurrentPhase() < (short) 5){
+                fanService.setCurrentPhase((short)5);
+            }
+
             request.setDevice(HardwareDeviceEnum.pwm1);
             request.setProcess(true);
             request.setPower(true);
             request.setLevel((short)255);
+            request.setStart(fanService.getCurrentPhase());
             request.setPeriod((int) Duration.ofMinutes(4).toMillis());
             DeviceEnum.LASER.getDevice().setLastChange(LocalDateTime.now());
 
             devicesService.sendRequest(request);
 
 
-            if(fanService.getCurrentPhase() < (short) 5){
-                fanService.setCurrentPhase((short)5);
-            }
+
           /*  try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
@@ -144,16 +148,20 @@ public class MegatronSokolServiceImpl  {
             }*/
 
             request = new DeviceControlRequest();
+
+            if(fanService.getCurrentPhase() < (short) 4){
+                fanService.setCurrentPhase((short)4);
+            }
+
             request.setDevice(HardwareDeviceEnum.pwm1);
             request.setPower(true);
             request.setProcess(true);
             request.setLevel((short)10);
+            request.setStart(fanService.getCurrentPhase());
             request.setPeriod((int) Duration.ofSeconds(5).toMillis());
 
             devicesService.sendRequest(request);
-            if(fanService.getCurrentPhase() < (short) 4){
-                fanService.setCurrentPhase((short)4);
-            }
+
 
         } else {
             throw new MegatronException("Invalid token");

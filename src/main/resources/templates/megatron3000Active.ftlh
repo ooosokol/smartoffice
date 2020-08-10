@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="//ooosokol.ru/css/tilda-slds-1.4.min.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="//ooosokol.ru/css/tilda-zoom-2.0.min.css" type="text/css" media="all"/>
     <script src="//ooosokol.ru/js/jquery-1.10.2.min.js"></script>
-    <script src="js/tilda-scripts-2.8.min.js"></script>
+    <script src="//ooosokol.ru/js/tilda-scripts-2.8.min.js"></script>
     <script src="//ooosokol.ru/js/tilda-blocks-2.7.js?t=1596663053"></script>
     <script src="//ooosokol.ru/js/lazyload-1.3.min.js" charset="utf-8"></script>
     <script src="//ooosokol.ru/js/tilda-animation-1.0.min.js" charset="utf-8"></script>

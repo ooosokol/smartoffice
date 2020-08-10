@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/megatron", true)
                 .and()
                 .logout()
                 .logoutUrl("/logout")
