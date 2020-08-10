@@ -16,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("megatron").password(passwordEncoder().encode("BNEMET")).roles("USER")
+                .withUser("MEGATRON").password(passwordEncoder().encode("BNEMET")).roles("USER")
                 .and()
                 .withUser("ood8iph7taeng2aiG-ie").password(passwordEncoder().encode("raix#aQu8Liesh2ohj3a")).roles("ADMIN");
     }

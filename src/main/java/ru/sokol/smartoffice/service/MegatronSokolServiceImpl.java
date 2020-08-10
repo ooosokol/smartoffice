@@ -111,7 +111,7 @@ public class MegatronSokolServiceImpl  {
             }catch (Exception e){
 
             }
-            DeviceEnum.LASER.getDevice().setLastChange(LocalDateTime.MAX);
+            DeviceEnum.LASER.getDevice().setLastChange(LocalDateTime.now().plus(Duration.ofHours(10000)));
 
             counter.getAndIncrement();
             return true;
@@ -198,5 +198,4 @@ public class MegatronSokolServiceImpl  {
     public LocalDateTime getTokenExpireTime(){
         return tokenExpireTime;
     }
-
 }

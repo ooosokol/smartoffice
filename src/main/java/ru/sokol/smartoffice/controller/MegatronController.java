@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.sokol.smartoffice.service.FanServiceImpl;
 import ru.sokol.smartoffice.service.MegatronSokolServiceImpl;
 import ru.sokol.smartoffice.service.exception.MegatronException;
 
@@ -13,9 +13,11 @@ import ru.sokol.smartoffice.service.exception.MegatronException;
 public class MegatronController {
 
     private final MegatronSokolServiceImpl megatronSokolService;
+    private final FanServiceImpl fanService;
 
-    public MegatronController(MegatronSokolServiceImpl megatronSokolService) {
+    public MegatronController(MegatronSokolServiceImpl megatronSokolService, FanServiceImpl fanService) {
         this.megatronSokolService = megatronSokolService;
+        this.fanService = fanService;
     }
 
     @GetMapping("/megatron")
@@ -24,6 +26,7 @@ public class MegatronController {
             model.addAttribute("testToken", megatronSokolService.getMegatronTestToken());
             model.addAttribute("deviceReady", megatronSokolService.isReady());
             model.addAttribute("tokenExpireTime", megatronSokolService.getTokenExpireTime());
+            model.addAttribute("gameFinished", fanService.getCurrentPhase().equals(Short.valueOf("5")));
             return "megatron3000Active";
         }else {
             return "megatron3000Inactive";
@@ -35,6 +38,7 @@ public class MegatronController {
             model.addAttribute("testToken", megatronSokolService.getMegatronTestToken());
             model.addAttribute("deviceReady", megatronSokolService.isReady());
             model.addAttribute("tokenExpireTime", megatronSokolService.getTokenExpireTime());
+            model.addAttribute("gameFinished", fanService.getCurrentPhase().equals(Short.valueOf("5")));
             try {
                 Boolean maxPower = megatronSokolService.startMegatron(token);
                 model.addAttribute("maxPower", maxPower);

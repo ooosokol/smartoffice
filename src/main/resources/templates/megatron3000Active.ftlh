@@ -45,19 +45,26 @@
             });
         }</script>
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(66284041, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/66284041" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/66284041" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
 <body class="t-body" style="margin:0;"><!--allrecords-->
@@ -1815,9 +1822,10 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/contacts"> <img class='tn-atom__img t-img'
-                                                                                             data-original='//ooosokol.ru/images/tild3231-6166-4034-a438-626166363865__button_kontakti.png'
-                                                                                             imgfield='tn_img_1594207705260'>
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/contacts"> <img
+                                class='tn-atom__img t-img'
+                                data-original='//ooosokol.ru/images/tild3231-6166-4034-a438-626166363865__button_kontakti.png'
+                                imgfield='tn_img_1594207705260'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2181555121594207705269' data-elem-id='1594207705269'
                      data-elem-type='image' data-field-top-value="20" data-field-top-res-960-value="20"
@@ -1843,9 +1851,10 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/otzivy"> <img class='tn-atom__img t-img'
-                                                                                           data-original='//ooosokol.ru/images/tild6338-6439-4238-a437-326636303633__button_otzivi.png'
-                                                                                           imgfield='tn_img_1594207705276'>
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/otzivy"> <img
+                                class='tn-atom__img t-img'
+                                data-original='//ooosokol.ru/images/tild6338-6439-4238-a437-326636303633__button_otzivi.png'
+                                imgfield='tn_img_1594207705276'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2181555121594207705283' data-elem-id='1594207705283'
                      data-elem-type='image' data-field-top-value="20" data-field-top-res-960-value="20"
@@ -1857,9 +1866,10 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/portfolio"> <img class='tn-atom__img t-img'
-                                                                                              data-original='//ooosokol.ru/images/tild3662-3966-4532-b332-616330356633__button_portfolio.png'
-                                                                                              imgfield='tn_img_1594207705283'>
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/portfolio"> <img
+                                class='tn-atom__img t-img'
+                                data-original='//ooosokol.ru/images/tild3662-3966-4532-b332-616330356633__button_portfolio.png'
+                                imgfield='tn_img_1594207705283'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2181555121594207705290' data-elem-id='1594207705290'
                      data-elem-type='image' data-field-top-value="20" data-field-top-res-960-value="20"
@@ -1871,9 +1881,10 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/pricelist"> <img class='tn-atom__img t-img'
-                                                                                              data-original='//ooosokol.ru/images/tild6263-3061-4862-b763-346165386135__button_price_list.png'
-                                                                                              imgfield='tn_img_1594207705290'>
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/pricelist"> <img
+                                class='tn-atom__img t-img'
+                                data-original='//ooosokol.ru/images/tild6263-3061-4862-b763-346165386135__button_price_list.png'
+                                imgfield='tn_img_1594207705290'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2181555121594207705299' data-elem-id='1594207705299'
                      data-elem-type='image' data-field-top-value="20" data-field-top-res-960-value="20"
@@ -1885,9 +1896,10 @@
                      data-field-width-res-480-value="90" data-field-width-res-320-value="90"
                      data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"
                      data-field-topunits-value="" data-field-leftunits-value="" data-field-heightunits-value=""
-                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/uslugi"> <img class='tn-atom__img t-img'
-                                                                                           data-original='//ooosokol.ru/images/tild3139-3038-4036-b731-386665316263__button_uslugi.png'
-                                                                                           imgfield='tn_img_1594207705299'>
+                     data-field-widthunits-value=""><a class='tn-atom' href="//ooosokol.ru/uslugi"> <img
+                                class='tn-atom__img t-img'
+                                data-original='//ooosokol.ru/images/tild3139-3038-4036-b731-386665316263__button_uslugi.png'
+                                imgfield='tn_img_1594207705299'>
                     </a></div>
                 <div class='t396__elem tn-elem tn-elem__2181555121594207741089' data-elem-id='1594207741089'
                      data-elem-type='shape' data-field-top-value="1" data-field-top-res-960-value="1"
@@ -2704,18 +2716,21 @@
                                     <div class="t-input-title" data-redactor-toolbar="no"
                                          field="nullli_title__1531306243545"
                                          style="color:#000;font-weight:400;font-family:jopsima;font-size:16px;padding-bottom:5px;">
-                                        Токен<span style="color: #6c757d!important;">активен до ${tokenExpireTime}</span>
+                                        Токен<span
+                                                style="color: #6c757d!important;">активен до ${tokenExpireTime}</span>
                                     </div>
                                     <!--token form MegatronSokolService-->
                                     <div class="t-input-block"><input type="text" name="token"
-                                                                      class="t-input js-tilda-rule " value="${testToken}"
+                                                                      class="t-input js-tilda-rule "
+                                                                      <#if gameFinished>value="Мегатрон  активирован в боевом режиме"
+                                                                      <#else>value="${testToken}"</#if>
                                                                       placeholder="Токен" data-tilda-rule="name"
                                                                       style="color:#000; border:1px solid #000; background-color:#fff; font-size:16px;font-weight:400;height:50px;">
 
                                         <#if errorMessage??>
-                                        <div class="t-input-error" style="display: block;">
-                                            ${errorMessage}
-                                        </div>
+                                            <div class="t-input-error" style="display: block;">
+                                                ${errorMessage}
+                                            </div>
                                         </#if>
                                         <#if maxPower??>
                                             <div class="t-input-error" style="color: #4a753e; display: block;">
@@ -2728,13 +2743,22 @@
                                         </#if>
                                     </div>
                                 </div>
-                                <div class="tn-form__submit"  style="">
+                                <div class="tn-form__submit" style="">
                                     <button type="submit" <#if deviceReady>
                                     <#else>
                                         disabled
                                     </#if>
-                                            style="color:#fff;background-color:#2dd62d;font-weight:600;font-size:14px;width:160px;height:50px;padding:0 15px;display:block;">
-                                        Стрелять
+                                            style="<#if deviceReady>
+                                                    color:#fff;background-color:#2dd62d;
+                                            <#else>
+                                                    background-color: #AAA;
+                                                    color:#000;
+                                            </#if>font-weight:600;font-size:14px;width:160px;height:50px;padding:0 15px;display:block;">
+                                        <#if deviceReady>
+                                            Стрелять
+                                        <#else>
+                                            Лазер охлаждается
+                                        </#if>
                                     </button>
                                 </div>
                             </div>
